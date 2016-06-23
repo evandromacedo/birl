@@ -6,7 +6,9 @@
 
     <style>
         #birlButton {
-            background: url(img/birl1.jpg) no-repeat 100% 100%;
+            cursor: pointer;
+            background: url(img/bodybuilder_peso.jpg) no-repeat 100% 100% ;
+            background-position: center;
             width: 500px;
             height: 500px;
             margin: 0 auto;
@@ -98,10 +100,12 @@
                     bambam.stopBirl(true);
 
                 birlButton.css("pointer-events", "none");
-                birlButton.css("background", "url(img/birl2.jpg) no-repeat 100% 100%");
+                birlButton.css("background", "url(img/bodybuilder_peso2.jpg) no-repeat 100% 100%");
+                birlButton.css("background-position", "center");
 
                 setTimeout(function() {
-                    birlButton.css("background", "url(img/birl1.jpg) no-repeat 100% 100%");
+                    birlButton.css("background", "url(img/bodybuilder_peso.jpg) no-repeat 100% 100%");
+                    birlButton.css("background-position", "center");
                     birlButton.css("pointer-events", "auto");
                 }, 1000);
             });
