@@ -8,6 +8,10 @@
     <title>Birl!</title>
 
     <style>
+        body {
+            background-image: url('img/cenarios/cenario_parque.jpg');
+            background-size: contain;
+        }
         #birlButton {
             cursor: pointer;
             background: url(img/bodybuilder2_peso.jpg) no-repeat 100% 100% ;
@@ -16,6 +20,7 @@
             height: 500px;
             margin: 0 auto;
             display: block;
+            float:left;
         }
 
         #birlInit {
@@ -25,6 +30,35 @@
             margin: 0 auto;
             display: block;
         }
+        #barra-outer{
+            width: 20px;
+            height: 425px;
+            border: 4px solid;
+            overflow: hidden;
+            background-color: #F5F5F5;
+
+            position: relative;
+
+        }
+        #barra{
+            -webkit-transition: all 1s; /* Safari */
+            transition: all 1s;
+            height: 50px;
+            background-color: #0F0;
+            width: 20px;
+            float:left;
+
+            position: absolute;
+            bottom: 0;
+        }
+        .btn{
+            width: 150px;
+            text-align: center;
+            padding: 5px;
+            background-color: #ccc;
+            margin: 5px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -33,6 +67,9 @@
 
     <button id="birlInit">Restart</button> <br>
     <div id="birlButton"></div>
+    <div id="barra-outer">
+        <div id="barra"></div>
+    </div>
 
     <audio id="birl">
         <source src="audio/birl.mp3" type="audio/mpeg">
@@ -50,7 +87,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script>
         jQuery(document).ready(function($) {
-            const birlLimit           = 3,
+            const birlLimit           = 5,
                   birlMaxLevel        = 5,
                   intervalLevelUm     = null,
                   intervalLevelDois   = 4000,
@@ -109,8 +146,9 @@
                     self.birlCounter++;
                     domBirlCounter.text(self.birlCounter);
 
-                    if (self.birlCounter < birlLimit) {
+                    if (self.birlCounter <= birlLimit) {
                         audioBirl.play();
+                        addBar();
                     }
                 };
 
@@ -119,6 +157,7 @@
                         self.birlCounter--;
                         audioNegativa.play();
                         domBirlCounter.text(self.birlCounter);
+                        rmvBar();
                     }
                 };
 
@@ -140,6 +179,7 @@
                     domBirlCounter.text(self.birlCounter);
                     domBirlLevel.text(self.birlLevel);
                     clearInterval(self.birlInterval);
+                    clrBar();
                 };
             }, bambam = new HoraDoShow();
 
@@ -170,6 +210,36 @@
                 }, 1000);
             });
         });
+    </script>
+
+    <script type="text/javascript">
+        var size = 0;
+        $("#barra").css('height', size);
+
+        function addBar(){
+            size += 20;
+
+            if (size > 40 && size <= 80){$("#barra").css('background-color', '#FF0'); }
+            else if (size > 80){ $("#barra").css('background-color', '#F00'); }
+            else{  $("#barra").css('background-color', '#0F0'); }
+
+            $("#barra").css('height', size+'%');
+        }
+        function rmvBar(){
+            size -= 20;
+
+
+            if (size > 260 && size <= 400){$("#barra").css('background-color', '#FF0'); }
+            else if (size > 400){ $("#barra").css('background-color', '#F00'); }
+            else{  $("#barra").css('background-color', '#0F0'); }
+
+            $("#barra").css('height', size+'%');
+        }
+        function clrBar(){
+            size = 0;
+            $("#barra").css('height', size+'%');
+            $("#barra").css('background-color', '#0F0');
+        }
     </script>
 </body>
 </html>
