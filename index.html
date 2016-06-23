@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Birl!</title>
+
+    <style>
+        #birlButton {
+            background: url(img/birl1.jpg) no-repeat 100% 100%;
+            width: 500px;
+            height: 500px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        #init {
+            width: 300px;
+            height: 50px;
+            font-size: 20px;
+            margin: 0 auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div style="font-size: 50px">Birl Counter: <span id="birlCounter">0</span></div>
+
+    <button id="init">bambam.init()</button> <br>
+    <div id="birlButton"></div>
+
+    <audio id="birl">
+        <source src="audio/birl.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="show">
+        <source src="audio/show.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="bodybuilder">
+        <source src="audio/bodybuilder.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script>
+        jQuery(document).ready(function($) {
+            const birlLimit = 3;
+
+            var audioShow        = document.getElementById("show"),
+                audioBirl        = document.getElementById("birl"),
+                audioBodybuilder = document.getElementById("bodybuilder"),
+                birlButton       = $("#birlButton");
+
+            audioShow.play();
+
+            var HoraDoShow = function () {
+                var self = this;
+
+                self.startBirl = function () {
+                    self.birlCounter = 0;
+                    $("#birlCounter").text(self.birlCounter);
+                    self.birlInterval = setInterval(self.decrementBirl, 2800);
+                };
+
+                self.incrementBirl = function () {
+                    self.birlCounter++;
+                    $("#birlCounter").text(self.birlCounter);
+
+                    if (self.birlCounter < birlLimit) {
+                        audioBirl.play();
+                    }
+                };
+
+                self.decrementBirl = function () {
+                    if (self.birlCounter > 0) {
+                        self.birlCounter--;
+                        $("#birlCounter").text(self.birlCounter);
+                    }
+                };
+
+                self.stopBirl = function (playBodybuilder) {
+                    clearInterval(self.birlInterval);
+
+                    if (playBodybuilder)
+                        audioBodybuilder.play();
+                }
+            }, bambam = new HoraDoShow();
+
+            bambam.startBirl();
+
+            $('#init').on('click', function() {
+                bambam.stopBirl(false);
+                bambam.startBirl();
+            });
+
+            birlButton.on('click', function() {
+                if (bambam.birlCounter < birlLimit)
+                    bambam.incrementBirl();
+
+                if (bambam.birlCounter >= birlLimit)
+                    bambam.stopBirl(true);
+
+                birlButton.css("pointer-events", "none");
+                birlButton.css("background", "url(img/birl2.jpg) no-repeat 100% 100%");
+
+                setTimeout(function() {
+                    birlButton.css("background", "url(img/birl1.jpg) no-repeat 100% 100%");
+                    birlButton.css("pointer-events", "auto");
+                }, 1000);
+            });
+        });
+    </script>
+</body>
+</html>

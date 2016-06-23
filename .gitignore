@@ -1,0 +1,5 @@
+# Ignore OSX stuff
+
+.DS_Store
+.AppleDouble
+.LSOverride
