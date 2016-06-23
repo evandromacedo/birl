@@ -84,7 +84,7 @@
 
                     switch (self.birlLevel) {
                         case 1:
-                            self.birlInterval = null;
+                            clearInterval(self.birlInterval);
                             break;
 
                         case 2:
@@ -123,8 +123,7 @@
                 };
 
                 self.incrementBirlLevel = function (playBodybuilder) {
-                    if (self.birlLevel)
-                        clearInterval(self.birlInterval);
+                    clearInterval(self.birlInterval);
 
                     if (playBodybuilder)
                         audioBodybuilder.play();
@@ -133,15 +132,21 @@
                         self.birlLevel++;
                         self.startBirl();
                     }
+                };
 
-                }
+                self.restartBirl = function () {
+                    self.birlCounter = 0;
+                    self.birlLevel   = 1;
+                    domBirlCounter.text(self.birlCounter);
+                    domBirlLevel.text(self.birlLevel);
+                    clearInterval(self.birlInterval);
+                };
             }, bambam = new HoraDoShow();
 
             bambam.startBirl();
 
             $('#birlInit').on('click', function() {
-                bambam.incrementBirlLevel(false);
-                bambam.startBirl(true);
+                bambam.restartBirl();
             });
 
             birlButton.on('click', function() {
