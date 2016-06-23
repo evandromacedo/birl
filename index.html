@@ -36,6 +36,9 @@
     <audio id="show">
         <source src="audio/show.mp3" type="audio/mpeg">
     </audio>
+    <audio id="negativa">
+        <source src="audio/negativa2.ogg" type="audio/mpeg">
+    </audio>
     <audio id="bodybuilder">
         <source src="audio/bodybuilder.mp3" type="audio/mpeg">
     </audio>
@@ -48,6 +51,7 @@
             var audioShow        = document.getElementById("show"),
                 audioBirl        = document.getElementById("birl"),
                 audioBodybuilder = document.getElementById("bodybuilder"),
+                audioNegativa    = document.getElementById("negativa"),
                 birlButton       = $("#birlButton");
 
             audioShow.play();
@@ -58,7 +62,7 @@
                 self.startBirl = function () {
                     self.birlCounter = 0;
                     $("#birlCounter").text(self.birlCounter);
-                    self.birlInterval = setInterval(self.decrementBirl, 2800);
+                    self.birlInterval = setInterval(self.decrementBirl, 1500);
                 };
 
                 self.incrementBirl = function () {
@@ -73,6 +77,7 @@
                 self.decrementBirl = function () {
                     if (self.birlCounter > 0) {
                         self.birlCounter--;
+                        audioNegativa.play();
                         $("#birlCounter").text(self.birlCounter);
                     }
                 };
