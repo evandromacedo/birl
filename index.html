@@ -7,7 +7,7 @@
     <style>
         #birlButton {
             cursor: pointer;
-            background: url(img/bodybuilder_peso.jpg) no-repeat 100% 100% ;
+            background: url(img/bodybuilder2_peso.jpg) no-repeat 100% 100% ;
             background-position: center;
             width: 500px;
             height: 500px;
@@ -46,7 +46,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script>
         jQuery(document).ready(function($) {
-            const birlLimit = 3;
+            const birlLimit = 13;
 
             var audioShow        = document.getElementById("show"),
                 audioBirl        = document.getElementById("birl"),
@@ -62,7 +62,7 @@
                 self.startBirl = function () {
                     self.birlCounter = 0;
                     $("#birlCounter").text(self.birlCounter);
-                    self.birlInterval = setInterval(self.decrementBirl, 1500);
+                    self.birlInterval = setInterval(self.decrementBirl, 2800);
                 };
 
                 self.incrementBirl = function () {
@@ -105,11 +105,11 @@
                     bambam.stopBirl(true);
 
                 birlButton.css("pointer-events", "none");
-                birlButton.css("background", "url(img/bodybuilder_peso2.jpg) no-repeat 100% 100%");
+                birlButton.css("background", "url(img/bodybuilder2_peso2.jpg) no-repeat 100% 100%");
                 birlButton.css("background-position", "center");
 
                 setTimeout(function() {
-                    birlButton.css("background", "url(img/bodybuilder_peso.jpg) no-repeat 100% 100%");
+                    birlButton.css("background", "url(img/bodybuilder2_peso.jpg) no-repeat 100% 100%");
                     birlButton.css("background-position", "center");
                     birlButton.css("pointer-events", "auto");
                 }, 1000);
