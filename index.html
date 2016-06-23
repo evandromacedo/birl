@@ -18,7 +18,7 @@
             display: block;
         }
 
-        #init {
+        #birlInit {
             width: 300px;
             height: 50px;
             font-size: 20px;
@@ -29,8 +29,9 @@
 </head>
 <body>
     <div style="font-size: 50px">Birl Counter: <span id="birlCounter">0</span></div>
+    <div style="font-size: 50px">Birl Level: <span id="birlLevel">1</span></div>
 
-    <button id="init">bambam.init()</button> <br>
+    <button id="birlInit">Restart</button> <br>
     <div id="birlButton"></div>
 
     <audio id="birl">
@@ -49,28 +50,64 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script>
         jQuery(document).ready(function($) {
-            const birlLimit = 13;
+            const birlLimit           = 3,
+                  birlMaxLevel        = 5,
+                  intervalLevelUm     = null,
+                  intervalLevelDois   = 4000,
+                  intervalLevelTres   = 3200,
+                  intervalLevelQuatro = 2500,
+                  intervalLevelBoss   = 1800;
 
-            var audioShow        = document.getElementById("show"),
-                audioBirl        = document.getElementById("birl"),
-                audioBodybuilder = document.getElementById("bodybuilder"),
-                audioNegativa    = document.getElementById("negativa"),
-                birlButton       = $("#birlButton");
+            var   audioShow           = document.getElementById("show"),
+                  audioBirl           = document.getElementById("birl"),
+                  audioBodybuilder    = document.getElementById("bodybuilder"),
+                  audioNegativa       = document.getElementById("negativa"),
+                  birlButton          = $("#birlButton"),
+                  domBirlCounter      = $("#birlCounter"),
+                  domBirlLevel        = $("#birlLevel");
 
             audioShow.play();
 
             var HoraDoShow = function () {
                 var self = this;
 
-                self.startBirl = function () {
+                self.birlLevel   = 1;
+                self.birlCounter = 0;
+
+                self.startBirl = function (restartBirlLevel) {
+                    if (restartBirlLevel)
+                        self.birlLevel = 1;
+
                     self.birlCounter = 0;
-                    $("#birlCounter").text(self.birlCounter);
-                    self.birlInterval = setInterval(self.decrementBirl, 2800);
+                    domBirlCounter.text(self.birlCounter);
+                    domBirlLevel.text(self.birlLevel);
+
+                    switch (self.birlLevel) {
+                        case 1:
+                            self.birlInterval = null;
+                            break;
+
+                        case 2:
+                            self.birlInterval = setInterval(self.decrementBirl, intervalLevelDois);
+                            break;
+
+                        case 3:
+                            self.birlInterval = setInterval(self.decrementBirl, intervalLevelTres);
+                            break;
+
+                        case 4:
+                            self.birlInterval = setInterval(self.decrementBirl, intervalLevelQuatro);
+                            break;
+
+                        case 5:
+                            self.birlInterval = setInterval(self.decrementBirl, intervalLevelBoss);
+                            break;
+                    }
                 };
 
                 self.incrementBirl = function () {
                     self.birlCounter++;
-                    $("#birlCounter").text(self.birlCounter);
+                    domBirlCounter.text(self.birlCounter);
 
                     if (self.birlCounter < birlLimit) {
                         audioBirl.play();
@@ -81,31 +118,41 @@
                     if (self.birlCounter > 0) {
                         self.birlCounter--;
                         audioNegativa.play();
-                        $("#birlCounter").text(self.birlCounter);
+                        domBirlCounter.text(self.birlCounter);
                     }
                 };
 
-                self.stopBirl = function (playBodybuilder) {
-                    clearInterval(self.birlInterval);
+                self.incrementBirlLevel = function (playBodybuilder) {
+                    if (self.birlLevel)
+                        clearInterval(self.birlInterval);
 
                     if (playBodybuilder)
                         audioBodybuilder.play();
+
+                    if (self.birlLevel < birlMaxLevel) {
+                        self.birlLevel++;
+                        self.startBirl();
+                    }
+
                 }
             }, bambam = new HoraDoShow();
 
             bambam.startBirl();
 
-            $('#init').on('click', function() {
-                bambam.stopBirl(false);
-                bambam.startBirl();
+            $('#birlInit').on('click', function() {
+                bambam.incrementBirlLevel(false);
+                bambam.startBirl(true);
             });
 
             birlButton.on('click', function() {
+                if (bambam.birlLevel > birlMaxLevel)
+                    return;
+
                 if (bambam.birlCounter < birlLimit)
                     bambam.incrementBirl();
 
                 if (bambam.birlCounter >= birlLimit)
-                    bambam.stopBirl(true);
+                    bambam.incrementBirlLevel(true);
 
                 birlButton.css("pointer-events", "none");
                 birlButton.css("background", "url(img/bodybuilder2_peso2.jpg) no-repeat 100% 100%");
