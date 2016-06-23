@@ -9,12 +9,12 @@
 
     <style>
         body {
-            background-image: url('img/cenarios/cenario_parque.jpg');
-            background-size: contain;
+            background: url('img/cenarios/praia.jpg');    
+            background-size: cover;
         }
         #birlButton {
             cursor: pointer;
-            background: url(img/bodybuilder2_peso.jpg) no-repeat 100% 100% ;
+            background: url(img/bodybuilder2_peso.png) no-repeat 100% 100% ;
             background-position: center;
             width: 500px;
             height: 500px;
@@ -32,8 +32,8 @@
         }
         #barra-outer{
             width: 20px;
-            height: 425px;
-            border: 4px solid;
+            height: 380px;
+            border: 6px solid;
             overflow: hidden;
             background-color: #F5F5F5;
 
@@ -169,6 +169,15 @@
 
                     if (self.birlLevel < birlMaxLevel) {
                         self.birlLevel++;
+                        birlButton.css("pointer-events", "none");
+                        birlButton.css("background", "url(img/bodybuilder2_peso3.png) no-repeat 100% 100%");
+                        birlButton.css("background-position", "center");
+                        setTimeout(function() {
+                            clrBar();
+                            birlButton.css("background", "url(img/bodybuilder2_peso.png) no-repeat 100% 100%");
+                            birlButton.css("background-position", "center");
+                            birlButton.css("pointer-events", "auto");
+                        }, 3000);
                         self.startBirl();
                     }
                 };
@@ -179,6 +188,7 @@
                     domBirlCounter.text(self.birlCounter);
                     domBirlLevel.text(self.birlLevel);
                     clearInterval(self.birlInterval);
+                    audioShow.play();
                     clrBar();
                 };
             }, bambam = new HoraDoShow();
@@ -196,18 +206,21 @@
                 if (bambam.birlCounter < birlLimit)
                     bambam.incrementBirl();
 
-                if (bambam.birlCounter >= birlLimit)
+                if (bambam.birlCounter >= birlLimit) {
                     bambam.incrementBirlLevel(true);
+                    return
+                }
 
                 birlButton.css("pointer-events", "none");
-                birlButton.css("background", "url(img/bodybuilder2_peso2.jpg) no-repeat 100% 100%");
+                birlButton.css("background", "url(img/bodybuilder2_peso2.png) no-repeat 100% 100%");
                 birlButton.css("background-position", "center");
 
                 setTimeout(function() {
-                    birlButton.css("background", "url(img/bodybuilder2_peso.jpg) no-repeat 100% 100%");
+                    birlButton.css("background", "url(img/bodybuilder2_peso.png) no-repeat 100% 100%");
                     birlButton.css("background-position", "center");
                     birlButton.css("pointer-events", "auto");
                 }, 1000);
+
             });
         });
     </script>
