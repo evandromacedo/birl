@@ -22,7 +22,7 @@ body {
     display: block;
 }
 
-#barra-outer{
+#barra-outer {
     width: 20px;
     height: 380px;
     border: 6px solid;
@@ -33,7 +33,7 @@ body {
 
 }
 
-#barra{
+#barra {
     -webkit-transition: all 1s; /* Safari */
     transition: all 1s;
     height: 0px;
@@ -45,7 +45,7 @@ body {
     bottom: 0;
 }
 
-.btn{
+.btn {
     width: 150px;
     text-align: center;
     padding: 5px;
