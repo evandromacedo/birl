@@ -9,18 +9,25 @@
 
     <style>
         body {
-            background: url('img/cenarios/praia.jpg');    
-            background-size: cover;
+            background: url('img/cenarios/cenario_academia.jpg') repeat-x center bottom;    
+            background-color: #b4f8f9;
+            margin: 0;
+            padding: 0;
+        }
+        #wrapper {
+            text-align: center;
+            alignment-baseline: baseline;
+            width: 400px;
+            height: 100vh;
+            margin: 0 auto;
         }
         #birlButton {
             cursor: pointer;
             background: url(img/bodybuilder2_peso.png) no-repeat 100% 100% ;
             background-position: center;
-            width: 500px;
-            height: 500px;
-            margin: 0 auto;
-            display: block;
-            float:left;
+            width: 300px;
+            height: 400px;
+            float: left;
         }
 
         #birlInit {
@@ -36,9 +43,8 @@
             border: 6px solid;
             overflow: hidden;
             background-color: #F5F5F5;
-
+            float: right;
             position: relative;
-
         }
         #barra{
             -webkit-transition: all 1s; /* Safari */
@@ -46,10 +52,8 @@
             height: 0px;
             background-color: #0F0;
             width: 20px;
-            float:left;
-
-            position: absolute;
             bottom: 0;
+            position:absolute;
         }
         .btn{
             width: 150px;
@@ -62,27 +66,31 @@
     </style>
 </head>
 <body>
-    <div style="font-size: 50px">Birl Counter: <span id="birlCounter">0</span></div>
-    <div style="font-size: 50px">Birl Level: <span id="birlLevel">1</span></div>
 
-    <button id="birlInit">Restart</button> <br>
-    <div id="birlButton"></div>
-    <div id="barra-outer">
-        <div id="barra"></div>
+    <div id="wrapper">
+        <div style="font-size: 50px">Birl Counter: <span id="birlCounter">0</span></div>
+        <div style="font-size: 50px">Birl Level: <span id="birlLevel">1</span></div>
+
+        <button id="birlInit">Restart</button> <br>
+        <div id="birlButton"></div>
+        <div id="barra-outer">
+            <div id="barra"></div>
+        </div>
+
+        <audio id="birl">
+            <source src="audio/birl.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="show">
+            <source src="audio/show.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="negativa">
+            <source src="audio/negativa.ogg" type="audio/mpeg">
+        </audio>
+        <audio id="bodybuilder">
+            <source src="audio/bodybuilder.mp3" type="audio/mpeg">
+        </audio>
+
     </div>
-
-    <audio id="birl">
-        <source src="audio/birl.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="show">
-        <source src="audio/show.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="negativa">
-        <source src="audio/negativa.ogg" type="audio/mpeg">
-    </audio>
-    <audio id="bodybuilder">
-        <source src="audio/bodybuilder.mp3" type="audio/mpeg">
-    </audio>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script>
