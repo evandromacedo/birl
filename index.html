@@ -1,67 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+    <title>Hora do Show, porra!</title>
+
+    <!-- Meta -->
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=.7, maximum-scale=1, user-scalable=no">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> -->
+    <meta name="description" content="Hora do Show, porra!">
+    <meta name="keywords" content="birl, hora do show, porra, bambam, maromba, leo stronda, ta saindo da jaula, monstro, bodybuilder, 13, treze, trapezio descendente, subir arvore, parque do ibirapuera, nao vai da, ajuda o maluco que ta doente, negativa">
 
-    <title>Birl!</title>
+    <!-- CSS -->
+    <link href="css/main.css">
 
-    <style>
-        body {
-            background: url('img/cenarios/praia.jpg');    
-            background-size: cover;
-        }
-        #birlButton {
-            cursor: pointer;
-            background: url(img/bodybuilder2_peso.png) no-repeat 100% 100% ;
-            background-position: center;
-            width: 500px;
-            height: 500px;
-            margin: 0 auto;
-            display: block;
-            float:left;
-        }
-
-        #birlInit {
-            width: 300px;
-            height: 50px;
-            font-size: 20px;
-            margin: 0 auto;
-            display: block;
-        }
-        #barra-outer{
-            width: 20px;
-            height: 380px;
-            border: 6px solid;
-            overflow: hidden;
-            background-color: #F5F5F5;
-
-            position: relative;
-
-        }
-        #barra{
-            -webkit-transition: all 1s; /* Safari */
-            transition: all 1s;
-            height: 0px;
-            background-color: #0F0;
-            width: 20px;
-            float:left;
-
-            position: absolute;
-            bottom: 0;
-        }
-        .btn{
-            width: 150px;
-            text-align: center;
-            padding: 5px;
-            background-color: #ccc;
-            margin: 5px;
-            cursor: pointer;
-        }
-    </style>
 </head>
 <body>
+
     <div style="font-size: 50px">Birl Counter: <span id="birlCounter">0</span></div>
     <div style="font-size: 50px">Birl Level: <span id="birlLevel">1</span></div>
 
@@ -84,175 +39,11 @@
         <source src="audio/bodybuilder.mp3" type="audio/mpeg">
     </audio>
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script>
-        jQuery(document).ready(function($) {
-            const birlLimit           = 5,
-                  birlMaxLevel        = 5,
-                  intervalLevelUm     = null,
-                  intervalLevelDois   = 4000,
-                  intervalLevelTres   = 3200,
-                  intervalLevelQuatro = 2500,
-                  intervalLevelBoss   = 1800;
+    <!-- jQuery -->
+    <script src="js/jquery-3.0.0.min.js"></script>
 
-            var   audioShow           = document.getElementById("show"),
-                  audioBirl           = document.getElementById("birl"),
-                  audioBodybuilder    = document.getElementById("bodybuilder"),
-                  audioNegativa       = document.getElementById("negativa"),
-                  birlButton          = $("#birlButton"),
-                  domBirlCounter      = $("#birlCounter"),
-                  domBirlLevel        = $("#birlLevel");
+    <!-- Main JS -->
+    <script src="js/main.js"></script> 
 
-            audioShow.play();
-
-            var HoraDoShow = function () {
-                var self = this;
-
-                self.birlLevel   = 1;
-                self.birlCounter = 0;
-
-                self.startBirl = function (restartBirlLevel) {
-                    if (restartBirlLevel)
-                        self.birlLevel = 1;
-
-                    self.birlCounter = 0;
-                    domBirlCounter.text(self.birlCounter);
-                    domBirlLevel.text(self.birlLevel);
-
-                    switch (self.birlLevel) {
-                        case 1:
-                            clearInterval(self.birlInterval);
-                            break;
-
-                        case 2:
-                            self.birlInterval = setInterval(self.decrementBirl, intervalLevelDois);
-                            break;
-
-                        case 3:
-                            self.birlInterval = setInterval(self.decrementBirl, intervalLevelTres);
-                            break;
-
-                        case 4:
-                            self.birlInterval = setInterval(self.decrementBirl, intervalLevelQuatro);
-                            break;
-
-                        case 5:
-                            self.birlInterval = setInterval(self.decrementBirl, intervalLevelBoss);
-                            break;
-                    }
-                };
-
-                self.incrementBirl = function () {
-                    self.birlCounter++;
-                    domBirlCounter.text(self.birlCounter);
-
-                    if (self.birlCounter <= birlLimit) {
-                        audioBirl.play();
-                        addBar();
-                    }
-                };
-
-                self.decrementBirl = function () {
-                    if (self.birlCounter > 0) {
-                        self.birlCounter--;
-                        audioNegativa.play();
-                        domBirlCounter.text(self.birlCounter);
-                        rmvBar();
-                    }
-                };
-
-                self.incrementBirlLevel = function (playBodybuilder) {
-                    clearInterval(self.birlInterval);
-
-                    if (playBodybuilder)
-                        audioBodybuilder.play();
-
-                    if (self.birlLevel < birlMaxLevel) {
-                        self.birlLevel++;
-                        birlButton.css("pointer-events", "none");
-                        birlButton.css("background", "url(img/bodybuilder2_peso3.png) no-repeat 100% 100%");
-                        birlButton.css("background-position", "center");
-                        setTimeout(function() {
-                            clrBar();
-                            birlButton.css("background", "url(img/bodybuilder2_peso.png) no-repeat 100% 100%");
-                            birlButton.css("background-position", "center");
-                            birlButton.css("pointer-events", "auto");
-                        }, 3000);
-                        self.startBirl();
-                    }
-                };
-
-                self.restartBirl = function () {
-                    self.birlCounter = 0;
-                    self.birlLevel   = 1;
-                    domBirlCounter.text(self.birlCounter);
-                    domBirlLevel.text(self.birlLevel);
-                    clearInterval(self.birlInterval);
-                    audioShow.play();
-                    clrBar();
-                };
-            }, bambam = new HoraDoShow();
-
-            bambam.startBirl();
-
-            $('#birlInit').on('click', function() {
-                bambam.restartBirl();
-            });
-
-            birlButton.on('click', function() {
-                if (bambam.birlLevel > birlMaxLevel)
-                    return;
-
-                if (bambam.birlCounter < birlLimit)
-                    bambam.incrementBirl();
-
-                if (bambam.birlCounter >= birlLimit) {
-                    bambam.incrementBirlLevel(true);
-                    return
-                }
-
-                birlButton.css("pointer-events", "none");
-                birlButton.css("background", "url(img/bodybuilder2_peso2.png) no-repeat 100% 100%");
-                birlButton.css("background-position", "center");
-
-                setTimeout(function() {
-                    birlButton.css("background", "url(img/bodybuilder2_peso.png) no-repeat 100% 100%");
-                    birlButton.css("background-position", "center");
-                    birlButton.css("pointer-events", "auto");
-                }, 1000);
-
-            });
-        });
-    </script>
-
-    <script type="text/javascript">
-        var size = 0;
-        $("#barra").css('height', size);
-
-        function addBar(){
-            size += 20;
-
-            if (size > 40 && size <= 80){$("#barra").css('background-color', '#FF0'); }
-            else if (size > 80){ $("#barra").css('background-color', '#F00'); }
-            else{  $("#barra").css('background-color', '#0F0'); }
-
-            $("#barra").css('height', size+'%');
-        }
-        function rmvBar(){
-            size -= 20;
-
-
-            if (size > 260 && size <= 400){$("#barra").css('background-color', '#FF0'); }
-            else if (size > 400){ $("#barra").css('background-color', '#F00'); }
-            else{  $("#barra").css('background-color', '#0F0'); }
-
-            $("#barra").css('height', size+'%');
-        }
-        function clrBar(){
-            size = 0;
-            $("#barra").css('height', size+'%');
-            $("#barra").css('background-color', '#0F0');
-        }
-    </script>
 </body>
 </html>
