@@ -3,36 +3,38 @@
 body {
     background: url('../img/cenarios/praia.jpg');    
     background-size: cover;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -ms-user-select: none;
+}
+
+.container {
+    text-align: center;
+    position: relative;
+    width: 340px;
+    margin: 0 auto;
 }
 
 #birlButton {
     cursor: pointer;
-    background: url('../img/bodybuilder2_peso.png') no-repeat 100% 100% ;
+    background: url('../img/bodybuilder2_peso.png') no-repeat 100% 100%;
     background-position: center;
-    width: 500px;
-    height: 500px;
-    margin: 0 auto;
-    display: block;
-    float:left;
-}
-
-#birlInit {
-    width: 300px;
-    height: 50px;
-    font-size: 20px;
-    margin: 0 auto;
-    display: block;
+    width: 290px;
+    height: 320px;
+    display: inline-block;
 }
 
 #barra-outer {
     width: 20px;
-    height: 380px;
+    height: 235px;
     border: 6px solid;
-    overflow: hidden;
     background-color: #F5F5F5;
-
+    /*float: right;*/
+    display: inline-block;
     position: relative;
-
+    right: 0;
+    bottom: 32px;
 }
 
 #barra {
@@ -41,10 +43,16 @@ body {
     height: 0px;
     background-color: #0F0;
     width: 20px;
-    float:left;
-
     position: absolute;
     bottom: 0;
+}
+
+#birlInit {
+    width: 300px;
+    height: 50px;
+    font-size: 20px;
+    margin: 0 auto;
+    display: block;
 }
 
 .btn {
