@@ -16,7 +16,7 @@ jQuery(document).ready(function($) {
           domBirlCounter      = $("#birlCounter"),
           domBirlLevel        = $("#birlLevel");
 
-    audioShow.play();
+    // audioShow.play();
 
     var HoraDoShow = function () {
         var self = this;
