@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=.7, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/8bit-wonder" type="text/css"/>
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> -->
+
+    <title>Birl!</title>
+
+
+    <style>
+
+    body {
+    	font-family: '8BITWONDERNominal'; 
+        background: url('img/cenarios/cenario_academia.jpg') repeat-x center bottom;    
+        background-color: #b4f8f9;
+        margin: 0;
+        padding: 0;
+    }
+    a {
+    	text-decoration: none;
+    }
+    #logo {
+    	margin-top: 7em;
+    	margin-bottom: 5em;
+    }
+     #wrapper {
+        text-align: center;
+        alignment-baseline: baseline;
+        height: 100vh;
+        margin: 0 auto;
+    }			
+    .btn {
+		padding: 0.5rem 1rem;
+		height: 2em;
+		width: 13em;
+		line-height: 2em;
+		display: inline-block;
+		color: #fff;
+		position: relative;
+		border: 0.2em solid #000;
+		margin: 0.5em;
+    }
+    .btn.red {
+		background-color: red;
+    }
+    .btn.red:hover{
+    	background-color: #c22b21;
+    }
+    .btn.grey {
+		background-color: grey;
+    }
+    .btn.orange {
+		background-color: #ffa500;
+    }.btn.orange:hover {
+		background-color: #d99c18;
+    }
+    .disabled {
+    	color: lightgrey;
+    	cursor: not-allowed;
+    }
+
+	</style>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script   src="https://code.jquery.com/ui/1.12.0-rc.2/jquery-ui.min.js"   integrity="sha256-55Jz3pBCF8z9jBO1qQ7cIf0L+neuPTD1u7Ytzrp2dqo="   crossorigin="anonymous"></script>
+    <script>
+        jQuery(document).ready(function($) {
+        	bgAudio = new Audio('audio/index.ogg'); 
+        	bgAudio.addEventListener('ended', function() {
+        	    this.currentTime = 0;
+        	    this.play();
+        	}, false);
+        	bgAudio.play()
+
+		});
+	</script>
+
+</head>
+<body>
+
+	<div id="wrapper">
+		<img id="logo" src='img/horadoshow.png' /><br>
+    	<a href="#!" class="red btn">MODO ARCADE</a href="#!"><br>
+    	<a href="#!" class="grey btn disabled" title="Em Breve, Porra!">MODO SURVIVAL</a href="#!"><br>
+		<a href="#!" class="orange btn">CREDITOS</a href="#!">
+    </div>
+
+</body>
+
+</html>
