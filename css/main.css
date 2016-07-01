@@ -1,8 +1,9 @@
 @import url('normalize.css');
 
 body {
-    background: url('../img/cenarios/cenario_academia.jpg') repeat-x center bottom;
+    background: url('../img/cenarios/cenario_academia.jpg') no-repeat center bottom;
     background-color: #b4f8f9;
+    background-size: 100% auto;
     -webkit-user-select: none;
     -moz-user-select: none;
     -khtml-user-select: none;
