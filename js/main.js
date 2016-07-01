@@ -247,3 +247,8 @@ jQuery(document).ready(function($) {
     }
 
 });
+
+// Fazer Spinner com isso mais tarde
+$(window).on('load', function() {
+    console.log('loaded');
+});
