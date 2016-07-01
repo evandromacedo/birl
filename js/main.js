@@ -15,7 +15,9 @@ jQuery(document).ready(function($) {
           body                = $("body"),
           birlButton          = $("#birlButton"),
           domBirlCounter      = $("#birlCounter"),
-          domBirlLevel        = $("#birlLevel");
+          domBirlLevel        = $("#birlLevel"),
+          modal               = $('#modal'),
+          modalClose          = $('#modal-close');
 
     // audioShow.play();
 
@@ -76,7 +78,7 @@ jQuery(document).ready(function($) {
             }
         };
 
-        self.incrementBirlLevel = function (playBodybuilder) {
+        self.nextLevel = function (playBodybuilder) {
             clearInterval(self.birlInterval);
 
             if (playBodybuilder)
@@ -113,12 +115,11 @@ jQuery(document).ready(function($) {
             bambam.incrementBirl();
 
         if (bambam.birlCounter >= birlLimit) {
-            bambam.incrementBirlLevel(true);
+            bambam.nextLevel(true);
             return
         }
 
         toggleBirlClick();
-
     });
 
     var changeScenario = function(scenario) {
@@ -154,6 +155,18 @@ jQuery(document).ready(function($) {
             bambam.startBirl();
         }, 3000);
     };
+
+    var openModal = function() {
+        modal.css('display', 'block');
+    };
+
+    openModal();
+
+    // Modal Stuff
+
+    modalClose.on('click', function() {
+        modal.css('display', 'none');
+    });
 
 
     /* -----------------------------------------------
