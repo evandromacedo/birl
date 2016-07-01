@@ -1,7 +1,7 @@
 jQuery(document).ready(function($) {
 
-    const birlLimit           = 5,
-          birlMaxLevel        = 5,
+    const birlLimit           = 2,
+          birlMaxLevel        = 3,
           intervalLevelUm     = null,
           intervalLevelDois   = 4000,
           intervalLevelTres   = 3200,
@@ -12,6 +12,7 @@ jQuery(document).ready(function($) {
           audioBirl           = document.getElementById("birl"),
           audioBodybuilder    = document.getElementById("bodybuilder"),
           audioNegativa       = document.getElementById("negativa"),
+          body                = $("body"),
           birlButton          = $("#birlButton"),
           domBirlCounter      = $("#birlCounter"),
           domBirlLevel        = $("#birlLevel");
@@ -38,6 +39,7 @@ jQuery(document).ready(function($) {
                     break;
 
                 case 2:
+                    changeScenario('praia');
                     self.birlInterval = setInterval(self.decrementBirl, intervalLevelDois);
                     break;
 
@@ -82,16 +84,7 @@ jQuery(document).ready(function($) {
 
             if (self.birlLevel < birlMaxLevel) {
                 self.birlLevel++;
-                birlButton.css("pointer-events", "none");
-                birlButton.css("background", "url(img/bodybuilder2_peso3.png) no-repeat 100% 100%");
-                birlButton.css("background-position", "center");
-                setTimeout(function() {
-                    clrBar();
-                    birlButton.css("background", "url(img/bodybuilder2_peso.png) no-repeat 100% 100%");
-                    birlButton.css("background-position", "center");
-                    birlButton.css("pointer-events", "auto");
-                }, 3000);
-                self.startBirl();
+                nextLevelAnimation();
             }
         };
 
@@ -124,6 +117,20 @@ jQuery(document).ready(function($) {
             return
         }
 
+        toggleBirlClick();
+
+    });
+
+    var changeScenario = function(scenario) {
+        switch (scenario) {
+            case 'praia':
+                body.css("background", "url('../img/cenarios/cenario_praia.jpg') repeat-x center bottom");
+                body.css("background-color", "#FFF");
+                break;
+        }
+    };
+
+    var toggleBirlClick = function() {
         birlButton.css("pointer-events", "none");
         birlButton.css("background", "url(img/bodybuilder2_peso2.png) no-repeat 100% 100%");
         birlButton.css("background-position", "center");
@@ -133,8 +140,25 @@ jQuery(document).ready(function($) {
             birlButton.css("background-position", "center");
             birlButton.css("pointer-events", "auto");
         }, 1000);
+    };
 
-    });
+    var nextLevelAnimation = function() {
+        birlButton.css("pointer-events", "none");
+        birlButton.css("background", "url(img/bodybuilder2_peso3.png) no-repeat 100% 100%");
+        birlButton.css("background-position", "center");
+        setTimeout(function() {
+            clrBar();
+            birlButton.css("background", "url(img/bodybuilder2_peso.png) no-repeat 100% 100%");
+            birlButton.css("background-position", "center");
+            birlButton.css("pointer-events", "auto");
+            bambam.startBirl();
+        }, 3000);
+    };
+
+
+    /* -----------------------------------------------
+        Gambiarra véa de Zé que depois eu ajeito
+    -------------------------------------------------- */
 
     var size = 0;
     $("#barra").css('height', size);
