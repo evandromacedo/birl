@@ -17,9 +17,15 @@ jQuery(document).ready(function($) {
           domBirlCounter      = $("#birlCounter"),
           domBirlLevel        = $("#birlLevel"),
           modal               = $('#modal'),
-          modalClose          = $('#modal-close');
+          nextLevelButton       = $('#nextLevelButton');
 
     // audioShow.play();
+
+    var openModal = function() {
+        modal.css('display', 'block');
+    };
+
+    openModal();
 
     var HoraDoShow = function () {
         var self = this;
@@ -78,11 +84,8 @@ jQuery(document).ready(function($) {
             }
         };
 
-        self.nextLevel = function (playBodybuilder) {
+        self.playNextLevel = function () {
             clearInterval(self.birlInterval);
-
-            if (playBodybuilder)
-                audioBodybuilder.play();
 
             if (self.birlLevel < birlMaxLevel) {
                 self.birlLevel++;
@@ -101,10 +104,16 @@ jQuery(document).ready(function($) {
         };
     }, bambam = new HoraDoShow();
 
-    bambam.startBirl();
-
     $('#birlInit').on('click', function() {
         bambam.restartBirl();
+    });
+
+    nextLevelButton.on('click', function() {
+        if (bambam.birlLevel == 1)
+            bambam.startBirl();
+        else
+            bambam.playNextLevel();
+        modal.css('display', 'none');
     });
 
     birlButton.on('click', function() {
@@ -115,8 +124,9 @@ jQuery(document).ready(function($) {
             bambam.incrementBirl();
 
         if (bambam.birlCounter >= birlLimit) {
-            bambam.nextLevel(true);
-            return
+            bambam.playNextLevel(true);
+            audioBodybuilder.play();
+            return;
         }
 
         toggleBirlClick();
@@ -160,13 +170,7 @@ jQuery(document).ready(function($) {
         modal.css('display', 'block');
     };
 
-    // openModal();
-
-    // Modal Stuff
-
-    modalClose.on('click', function() {
-        modal.css('display', 'none');
-    });
+    openModal();
 
 
     /* -----------------------------------------------
