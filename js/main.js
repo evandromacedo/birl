@@ -1,21 +1,28 @@
 jQuery(document).ready(function($) {
 
-    const birlLimit           = 5,
+    const birlLimit           = 10,
           birlMaxLevel        = 5,
           intervalLevelUm     = null,
-          intervalLevelDois   = 4000,
-          intervalLevelTres   = 3200,
-          intervalLevelQuatro = 2500,
-          intervalLevelBoss   = 1800;
+          intervalLevelDois   = 3500,
+          intervalLevelTres   = 2500,
+          intervalLevelQuatro = 2200,
+          intervalLevelBoss   = 1970, // ESSE TA DIFÍCIL PRA CARAI
+          timerLevelUm        = 30,
+          timerLevelDois      = 25,
+          timerLevelTres      = 20,
+          timerLevelQuatro    = 15,
+          timerLevelBoss      = null;
 
     var   audioShow           = document.getElementById("show"),
           audioBirl           = document.getElementById("birl"),
           audioBodybuilder    = document.getElementById("bodybuilder"),
           audioNegativa       = document.getElementById("negativa"),
+          audioVaiDarNao      = document.getElementById("vaiDarNao"),
           body                = $("body"),
           birlButton          = $("#birlButton"),
           domBirlCounter      = $("#birlCounter"),
           domBirlLevel        = $("#birlLevel"),
+          domBirlTimer        = $("#birlTimer"),
           modal               = $('#modal'),
           nextLevelButton     = $('#nextLevelButton'),
           nextLevelText       = $('#nextLevelText'),
@@ -34,34 +41,60 @@ jQuery(document).ready(function($) {
 
         self.birlLevel   = 1;
         self.birlCounter = 0;
+        self.birlTimer   = 20;
+
+        /****************** Timer ********************/
+        self.countdown = function() {
+            self.birlTimer--;
+            domBirlTimer.text(self.birlTimer);
+
+            if (self.birlTimer == 0) {
+                clearInterval(self.birlCountdown);
+                self.playAgain();
+                return;
+            }
+
+            if (self.birlTimer == 5) {
+                domBirlTimer.css('color', 'red');
+                audioVaiDarNao.play();
+            }
+        }
+        /*********************************************/
 
         self.startBirl = function (restartBirlLevel) {
             if (restartBirlLevel)
                 self.birlLevel = 1;
 
             self.birlCounter = 0;
+            self.birlTimer   = 20;
             domBirlCounter.text(self.birlCounter);
             domBirlLevel.text(self.birlLevel);
 
             switch (self.birlLevel) {
                 case 1:
                     clearInterval(self.birlInterval);
+                    domBirlTimer.text(self.birlTimer);
+                    self.birlCountdown = setInterval(self.countdown, 1000);
                     break;
 
                 case 2:
                     self.birlInterval = setInterval(self.decrementBirl, intervalLevelDois);
+                    self.birlCountdown = setInterval(self.countdown, 1000);
                     break;
 
                 case 3:
                     self.birlInterval = setInterval(self.decrementBirl, intervalLevelTres);
+                    self.birlCountdown = setInterval(self.countdown, 1000);
                     break;
 
                 case 4:
                     self.birlInterval = setInterval(self.decrementBirl, intervalLevelQuatro);
+                    self.birlCountdown = setInterval(self.countdown, 1000);
                     break;
 
                 case 5:
                     self.birlInterval = setInterval(self.decrementBirl, intervalLevelBoss);
+                    self.birlCountdown = setInterval(self.countdown, 1000);
                     break;
             }
         };
@@ -90,8 +123,16 @@ jQuery(document).ready(function($) {
                 self.startBirl();
         };
 
+        self.playAgain = function() {
+            clrBar();
+            domBirlTimer.css('color', 'black');
+            openModal('Perdeu. Mas um monstro nunca desiste', self.birlLevel);
+            clearInterval(self.birlInterval);
+        }
+
         self.finishLevel = function() {
             disableBambam();
+            clearInterval(self.birlCountdown);
             clearInterval(self.birlInterval);
             self.birlLevel++;
 
@@ -99,6 +140,8 @@ jQuery(document).ready(function($) {
 
                 clrBar();
                 enableBambam();
+                self.birlTimer = 20;
+                domBirlTimer.text(self.birlTimer);
 
                 switch (self.birlLevel) {
                     case 2:
@@ -222,7 +265,7 @@ jQuery(document).ready(function($) {
     $("#barra").css('height', size);
 
     function addBar(){
-        size += 20;
+        size += 10;
 
         if (size > 40 && size <= 80){$("#barra").css('background-color', '#FF0'); }
         else if (size > 80){ $("#barra").css('background-color', '#F00'); }
@@ -231,7 +274,7 @@ jQuery(document).ready(function($) {
         $("#barra").css('height', size+'%');
     }
     function rmvBar(){
-        size -= 20;
+        size -= 10;
 
 
         if (size > 260 && size <= 400){$("#barra").css('background-color', '#FF0'); }
