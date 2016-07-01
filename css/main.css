@@ -24,7 +24,7 @@ body {
 #birlButton {
     cursor: pointer;
     background: url('../img/bodybuilder2_peso.png') no-repeat 100% 100%;
-    background-position: center;
+    background-position: center !important;
     width: 290px;
     height: 320px;
     display: inline-block;

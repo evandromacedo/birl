@@ -21,8 +21,6 @@ jQuery(document).ready(function($) {
           nextLevelText       = $('#nextLevelText'),
           nextLevelSpan       = $('#nextLevelSpan');
 
-    // audioShow.play();
-
     var openModal = function(text, level) {
         modal.css('display', 'block');
         nextLevelText.text(text);
@@ -98,6 +96,7 @@ jQuery(document).ready(function($) {
             self.birlLevel++;
 
             setTimeout(function() {
+
                 clrBar();
                 enableBambam();
 
@@ -122,6 +121,7 @@ jQuery(document).ready(function($) {
                         openModal('Ta saindo da jaula o monstro!', 5);
                         break;
                 }
+
             }, 3000);
         }
 
@@ -168,39 +168,49 @@ jQuery(document).ready(function($) {
     var changeScenario = function(scenario) {
         switch (scenario) {
             case 'academia':
-                body.css("background", "url('../img/cenarios/cenario_academia.jpg') repeat-x center bottom");
-                body.css("background-color", "#B4F8F9");
+                body.css({
+                    'background': 'url(../img/cenarios/cenario_academia.jpg) repeat-x center bottom',
+                    'backgorund-color': '#B4F8F9'
+                });
                 break;
 
             case 'praia':
-                body.css("background", "url('../img/cenarios/cenario_praia.jpg') repeat-x center bottom");
-                body.css("background-color", "#FFF");
+                body.css({
+                    'background': 'url(../img/cenarios/cenario_praia.jpg) repeat-x center bottom',
+                    'backgorund-color': '#FFF'
+                });
                 break;
         }
     };
 
     var toggleBirlClick = function() {
-        birlButton.css("pointer-events", "none");
-        birlButton.css("background", "url(img/bodybuilder2_peso2.png) no-repeat 100% 100%");
-        birlButton.css("background-position", "center");
+        birlButton.css({
+            'pointer-events': 'none',
+            'background'    : 'url(img/bodybuilder2_peso2.png) no-repeat 100% 100%'
+        });
 
         setTimeout(function() {
-            birlButton.css("background", "url(img/bodybuilder2_peso.png) no-repeat 100% 100%");
-            birlButton.css("background-position", "center");
-            birlButton.css("pointer-events", "auto");
+
+            birlButton.css({
+                'pointer-events': 'auto',
+                'background'    : 'url(img/bodybuilder2_peso.png) no-repeat 100% 100%'
+            });
+
         }, 1000);
     };
 
     var disableBambam = function() {
-        birlButton.css("pointer-events", "none");
-        birlButton.css("background", "url(img/bodybuilder2_peso3.png) no-repeat 100% 100%");
-        birlButton.css("background-position", "center");
+        birlButton.css({
+            'pointer-events': 'none',
+            'background'    : 'url(img/bodybuilder2_peso3.png) no-repeat 100% 100%'
+        });
     };
 
     var enableBambam = function() {
-        birlButton.css("background", "url(img/bodybuilder2_peso.png) no-repeat 100% 100%");
-        birlButton.css("background-position", "center");
-        birlButton.css("pointer-events", "auto");
+        birlButton.css({
+            'pointer-events': 'auto',
+            'background'    : 'url(img/bodybuilder2_peso.png) no-repeat 100% 100%'
+        });
     };
 
 
