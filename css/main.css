@@ -10,6 +10,8 @@ body {
     -ms-user-select: none;
     alignment-baseline: baseline;
     height: 100vh;
+    font-family: '8BITWONDERNominal';
+    font-size: 62.5%;
 }
 
 .container {
@@ -58,13 +60,42 @@ body {
     display: block;
 }
 
+/* Buttons */
+
+a {
+    text-decoration: none;
+}
+
 .btn {
-    width: 150px;
-    text-align: center;
-    padding: 5px;
-    background-color: #ccc;
-    margin: 5px;
-    cursor: pointer;
+    padding: 0.5rem 1rem;
+    height: 2em;
+    width: 13em;
+    line-height: 2em;
+    display: inline-block;
+    color: #fff;
+    position: relative;
+    border: 0.2em solid #000;
+    margin: 0.5em;
+}
+
+.btn.red {
+    background-color: red;
+}
+
+.btn.red:hover{
+    background-color: #c22b21;
+}
+
+.btn.grey {
+    background-color: grey;
+}
+
+.btn.orange {
+    background-color: #ffa500;
+}
+
+.btn.orange:hover {
+    background-color: #d99c18;
 }
 
 /* Modal Stuff */
@@ -85,12 +116,15 @@ body {
 
 /* Modal Content */
 .modal-content {
-    background-color: #fefefe;
+    /*background-color: #fefefe;*/
     margin: auto;
     padding: 20px;
-    border: 1px solid #888;
-    width: 50%;
-    max-width: 500px;
+    /*border: 1px solid #888;*/
+    width: 80%;
+    max-width: 800px;
+    color: #FFF;
+    font-size: 3em;
+    text-align: center;
 }
 
 /* The Close Button */

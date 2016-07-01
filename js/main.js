@@ -160,7 +160,7 @@ jQuery(document).ready(function($) {
         modal.css('display', 'block');
     };
 
-    openModal();
+    // openModal();
 
     // Modal Stuff
 
