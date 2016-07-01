@@ -169,14 +169,14 @@ jQuery(document).ready(function($) {
         switch (scenario) {
             case 'academia':
                 body.css({
-                    'background': 'url(../img/cenarios/cenario_academia.jpg) repeat-x center bottom',
+                    'background': 'url(img/cenarios/cenario_academia.jpg) repeat-x center bottom',
                     'backgorund-color': '#B4F8F9'
                 });
                 break;
 
             case 'praia':
                 body.css({
-                    'background': 'url(../img/cenarios/cenario_praia.jpg) repeat-x center bottom',
+                    'background': 'url(img/cenarios/cenario_praia.jpg) repeat-x center bottom',
                     'backgorund-color': '#FFF'
                 });
                 break;
