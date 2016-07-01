@@ -1,10 +1,9 @@
-var body            = $("body"),
-    birlButton      = $("#birlButton"),
-    domBirlCounter  = $("#birlCounter"),
-    domBirlLevel    = $("#birlLevel"),
-    domBirlTimer    = $("#birlTimer"),
+var body            = $('body'),
+    birlButton      = $('#birlButton'),
+    domBirlCounter  = $('#birlCounter'),
+    domBirlLevel    = $('#birlLevel'),
+    domBirlTimer    = $('#birlTimer'),
     modal           = $('#modal'),
-    nextLevelButton = $('#nextLevelButton'),
     nextLevelText   = $('#nextLevelText'),
     nextLevelSpan   = $('#nextLevelSpan');
 
@@ -24,6 +23,18 @@ var setTimerRed = function() {
 
 var setTimerBlack = function() {
     domBirlTimer.css('color', 'black');
+};
+
+var setCounterText = function(string) {
+    domBirlCounter.text(string);
+};
+
+var setLevelText = function(string) {
+    domBirlLevel.text(string);
+};
+
+var setTimerText = function(string) {
+    domBirlTimer.text(string);
 };
 
 var changeScenario = function(scenario) {

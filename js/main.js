@@ -18,16 +18,8 @@ jQuery(document).ready(function($) {
           audioBodybuilder    = document.getElementById("bodybuilder"),
           audioNegativa       = document.getElementById("negativa"),
           audioVaiDarNao      = document.getElementById("vaiDarNao"),
-          body                = $("body"),
-          birlButton          = $("#birlButton"),
-          domBirlCounter      = $("#birlCounter"),
-          domBirlLevel        = $("#birlLevel"),
-          domBirlTimer        = $("#birlTimer"),
-          modal               = $('#modal'),
-          nextLevelButton     = $('#nextLevelButton'),
-          nextLevelText       = $('#nextLevelText'),
-          nextLevelSpan       = $('#nextLevelSpan');
-
+          birlButton          = $('#birlButton'),
+          nextLevelButton     = $('#nextLevelButton');
 
     openModal();
 
@@ -41,7 +33,7 @@ jQuery(document).ready(function($) {
         /****************** Timer ********************/
         self.countdown = function() {
             self.birlTimer--;
-            domBirlTimer.text(self.birlTimer);
+            setTimerText(self.birlTimer);
 
             if (self.birlTimer == 0) {
                 clearInterval(self.birlCountdown);
@@ -62,13 +54,13 @@ jQuery(document).ready(function($) {
 
             self.birlCounter = 0;
             self.birlTimer   = 20;
-            domBirlCounter.text(self.birlCounter);
-            domBirlLevel.text(self.birlLevel);
+            setCounterText(self.birlCounter);
+            setLevelText(self.birlLevel);
 
             switch (self.birlLevel) {
                 case 1:
                     clearInterval(self.birlInterval);
-                    domBirlTimer.text(self.birlTimer);
+                    setTimerText(self.birlTimer);
                     self.birlCountdown = setInterval(self.countdown, 1000);
                     break;
 
@@ -96,7 +88,7 @@ jQuery(document).ready(function($) {
 
         self.incrementBirl = function () {
             self.birlCounter++;
-            domBirlCounter.text(self.birlCounter);
+            setCounterText(self.birlCounter);
 
             if (self.birlCounter <= birlLimit) {
                 audioBirl.play();
@@ -108,7 +100,7 @@ jQuery(document).ready(function($) {
             if (self.birlCounter > 0) {
                 self.birlCounter--;
                 audioNegativa.play();
-                domBirlCounter.text(self.birlCounter);
+                setCounterText(self.birlCounter);
                 rmvBar();
             }
         };
@@ -136,7 +128,7 @@ jQuery(document).ready(function($) {
                 clrBar();
                 enableBambam();
                 self.birlTimer = 20;
-                domBirlTimer.text(self.birlTimer);
+                setTimerText(self.birlTimer);
 
                 switch (self.birlLevel) {
                     case 2:
@@ -166,8 +158,8 @@ jQuery(document).ready(function($) {
         self.restartBirl = function () {
             self.birlCounter = 0;
             self.birlLevel   = 1;
-            domBirlCounter.text(self.birlCounter);
-            domBirlLevel.text(self.birlLevel);
+            setCounterText(self.birlCounter);
+            setLevelText(self.birlLevel);
             clearInterval(self.birlInterval);
             audioShow.play();
             clrBar();
