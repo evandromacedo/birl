@@ -58,15 +58,19 @@ var changeScenario = function(scenario) {
 var toggleBirlClick = function() {
     birlButton.css({
         'pointer-events': 'none',
-        'background'    : 'url(img/bodybuilder2_peso2.png) no-repeat 100% 100%'
+        // 'background'    : 'url(img/bodybuilder2_peso2.png) no-repeat 100% 100%'
     });
+    $('#teste').attr('src', 'img/bodybuilder2_peso2.png');
+    // $('#teste').css('pointer-events', 'none');
 
     setTimeout(function() {
 
         birlButton.css({
             'pointer-events': 'auto',
-            'background'    : 'url(img/bodybuilder2_peso.png) no-repeat 100% 100%'
+            // 'background'    : 'url(img/bodybuilder2_peso.png) no-repeat 100% 100%'
         });
+        $('#teste').attr('src', 'img/bodybuilder2_peso.png');
+        // $('#teste').css('pointer-events', 'auto');
 
     }, 1000);
 };
