@@ -204,4 +204,5 @@ $(window).resize(function() {
 // Fazer Spinner com isso mais tarde
 $(window).on('load', function() {
     console.log('loaded');
+    $('.loading').fadeOut(400);
 });
