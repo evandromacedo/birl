@@ -1,5 +1,5 @@
 var body            = $('body'),
-    birlButton      = $('#birlButton'),
+    birlButton      = $('#bambam'),
     domBirlCounter  = $('#birlCounter'),
     domBirlLevel    = $('#birlLevel'),
     domBirlTimer    = $('#birlTimer'),
@@ -55,44 +55,46 @@ var changeScenario = function(scenario) {
     }
 };
 
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+    O background-image vai mudar pra position
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
+
 var toggleBirlClick = function() {
     birlButton.css({
-        'pointer-events': 'none',
-        // 'background'    : 'url(img/bodybuilder2_peso2.png) no-repeat 100% 100%'
+        'pointer-events'  : 'none',
+        'background-image': 'url(img/bodybuilder2_peso2.png)'
     });
-    $('#teste').attr('src', 'img/bodybuilder2_peso2.png');
-    // $('#teste').css('pointer-events', 'none');
 
     setTimeout(function() {
 
         birlButton.css({
-            'pointer-events': 'auto',
-            // 'background'    : 'url(img/bodybuilder2_peso.png) no-repeat 100% 100%'
+            'pointer-events'  : 'auto',
+            'background-image': 'url(img/bodybuilder2_peso.png)'
         });
-        $('#teste').attr('src', 'img/bodybuilder2_peso.png');
-        // $('#teste').css('pointer-events', 'auto');
 
     }, 1000);
 };
 
 var disableBambam = function() {
     birlButton.css({
-        'pointer-events': 'none',
-        'background'    : 'url(img/bodybuilder2_peso3.png) no-repeat 100% 100%'
+        'pointer-events'  : 'none',
+        'background-image': 'url(img/bodybuilder2_peso3.png)'
     });
 };
 
 var enableBambam = function() {
     birlButton.css({
-        'pointer-events': 'auto',
-        'background'    : 'url(img/bodybuilder2_peso.png) no-repeat 100% 100%'
+        'pointer-events'  : 'auto',
+        'background-image': 'url(img/bodybuilder2_peso.png)'
     });
 };
 
+/* - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-/* -----------------------------------------------
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
     Gambiarra véa de Zé que depois eu ajeito
--------------------------------------------------- */
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 var size = 0;
 $("#barra").css('height', size);
@@ -121,3 +123,5 @@ function clrBar(){
     $("#barra").css('height', size+'%');
     $("#barra").css('background-color', '#0F0');
 }
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - */

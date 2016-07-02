@@ -18,7 +18,7 @@ jQuery(document).ready(function($) {
           audioBodybuilder    = document.getElementById("bodybuilder"),
           audioNegativa       = document.getElementById("negativa"),
           audioVaiDarNao      = document.getElementById("vaiDarNao"),
-          birlButton          = $('#birlButton'),
+          birlButton          = $('#bambam'),
           nextLevelButton     = $('#nextLevelButton');
 
     // openModal();
@@ -195,6 +195,10 @@ jQuery(document).ready(function($) {
         toggleBirlClick();
     });
 
+});
+
+$(window).resize(function() {
+  $("#bambam").css('width', $('#bambamImg').width());
 });
 
 // Fazer Spinner com isso mais tarde
