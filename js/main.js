@@ -19,7 +19,7 @@ jQuery(document).ready(function($) {
           audioNegativa       = document.getElementById("negativa"),
           audioVaiDarNao      = document.getElementById("vaiDarNao"),
           birlButton          = $('#bambam'),
-          nextLevelButton     = $('#nextLevelButton');
+          nextLevelButton     = $('#next-level-button');
 
     // openModal();
 
@@ -198,7 +198,7 @@ jQuery(document).ready(function($) {
 });
 
 $(window).resize(function() {
-  $("#bambam").css('width', $('#bambamImg').width());
+  $("#bambam").css('width', $('#bambam-img').width());
 });
 
 // Fazer Spinner com isso mais tarde

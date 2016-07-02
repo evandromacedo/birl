@@ -1,11 +1,11 @@
 var body            = $('body'),
     birlButton      = $('#bambam'),
-    domBirlCounter  = $('#birlCounter'),
-    domBirlLevel    = $('#birlLevel'),
-    domBirlTimer    = $('#birlTimer'),
+    domBirlCounter  = $('#birl-counter'),
+    domBirlLevel    = $('#birl-level'),
+    domBirlTimer    = $('#birl-timer'),
     modal           = $('#modal'),
-    nextLevelText   = $('#nextLevelText'),
-    nextLevelSpan   = $('#nextLevelSpan');
+    nextLevelText   = $('#next-level-text'),
+    nextLevelSpan   = $('#next-level-span');
 
 var openModal = function(text, level) {
     modal.css('display', 'block');
@@ -97,31 +97,31 @@ var enableBambam = function() {
 - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 var size = 0;
-$("#barra").css('height', size);
+$("#barra-inner").css('height', size);
 
 function addBar(){
     size += 10;
 
-    if (size > 40 && size <= 80){$("#barra").css('background-color', '#FF0'); }
-    else if (size > 80){ $("#barra").css('background-color', '#F00'); }
-    else{  $("#barra").css('background-color', '#0F0'); }
+    if (size > 40 && size <= 80){$("#barra-inner").css('background-color', '#FF0'); }
+    else if (size > 80){ $("#barra-inner").css('background-color', '#F00'); }
+    else{  $("#barra-inner").css('background-color', '#0F0'); }
 
-    $("#barra").css('height', size+'%');
+    $("#barra-inner").css('height', size+'%');
 }
 function rmvBar(){
     size -= 10;
 
 
-    if (size > 260 && size <= 400){$("#barra").css('background-color', '#FF0'); }
-    else if (size > 400){ $("#barra").css('background-color', '#F00'); }
-    else{  $("#barra").css('background-color', '#0F0'); }
+    if (size > 260 && size <= 400){$("#barra-inner").css('background-color', '#FF0'); }
+    else if (size > 400){ $("#barra-inner").css('background-color', '#F00'); }
+    else{  $("#barra-inner").css('background-color', '#0F0'); }
 
-    $("#barra").css('height', size+'%');
+    $("#barra-inner").css('height', size+'%');
 }
 function clrBar(){
     size = 0;
-    $("#barra").css('height', size+'%');
-    $("#barra").css('background-color', '#0F0');
+    $("#barra-inner").css('height', size+'%');
+    $("#barra-inner").css('background-color', '#0F0');
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - */

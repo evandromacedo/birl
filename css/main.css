@@ -38,7 +38,7 @@ body {
     cursor             : pointer;
 }
 
-#bambamImg {
+#bambam-img {
     width     : auto;
     height    : 100%;
     visibility: hidden;
@@ -68,15 +68,31 @@ body {
     box-sizing        : border-box;
 }
 
-#barra {
+#barra-inner {
     height          : 0px;
     position        : absolute;
     background-color: #0F0;
     width           : 100%;
     bottom          : 0;
+    /*z-index         : -1;*/
 
     -webkit-transition: all 1s;
     transition        : all 1s;
+}
+
+#barra-zero, #barra-treze {
+    position: absolute;
+    left: 0;
+    right: -1px;
+    margin: 0 auto;
+}
+
+#barra-zero {
+    bottom: 4px;
+}
+
+#barra-treze {
+    top: 4px;
 }
 
 #birlInit {
