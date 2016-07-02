@@ -21,7 +21,7 @@ jQuery(document).ready(function($) {
           birlButton          = $('#bambam'),
           nextLevelButton     = $('#next-level-button');
 
-    // openModal();
+    openModal();
 
     var HoraDoShow = function () {
         var self = this;
@@ -201,8 +201,7 @@ $(window).resize(function() {
   $("#bambam").css('width', $('#bambam-img').width());
 });
 
-// Fazer Spinner com isso mais tarde
 $(window).on('load', function() {
-    console.log('loaded');
     $('.loading').fadeOut(400);
+    document.getElementById('show').play();
 });

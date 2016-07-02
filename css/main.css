@@ -183,6 +183,7 @@ a {
     z-index: 1000;
     background-color: #404c54;
     position: fixed;
+    top: 0;
     height: 100%;
     width: 100%;
 }
