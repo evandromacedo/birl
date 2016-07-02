@@ -179,21 +179,21 @@ jQuery(document).ready(function($) {
         closeModal();
     });
 
-    // birlButton.on('click', function() {
-    //     if (bambam.birlLevel > birlMaxLevel)
-    //         return;
+    birlButton.on('click', function() {
+        if (bambam.birlLevel > birlMaxLevel)
+            return;
 
-    //     if (bambam.birlCounter < birlLimit)
-    //         bambam.incrementBirl();
+        if (bambam.birlCounter < birlLimit)
+            bambam.incrementBirl();
 
-    //     if (bambam.birlCounter >= birlLimit) {
-    //         bambam.finishLevel();
-    //         audioBodybuilder.play();
-    //         return;
-    //     }
+        if (bambam.birlCounter >= birlLimit) {
+            bambam.finishLevel();
+            audioBodybuilder.play();
+            return;
+        }
 
-    //     toggleBirlClick();
-    // });
+        toggleBirlClick();
+    });
 
 });
 
