@@ -5,7 +5,8 @@ var body            = $('body'),
     domBirlTimer    = $('#birl-timer'),
     modal           = $('#modal'),
     nextLevelText   = $('#next-level-text'),
-    nextLevelSpan   = $('#next-level-span');
+    nextLevelSpan   = $('#next-level-span'),
+    audioBirl       = document.getElementById("birl");
 
 var openModal = function(text, level) {
     modal.css('display', 'block');
@@ -59,20 +60,29 @@ var changeScenario = function(scenario) {
     O background-image vai mudar pra position
 - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
+var hasEnded = true;
+
 var toggleBirlClick = function() {
     birlButton.css({
-        'pointer-events'  : 'none',
+        // 'pointer-events'  : 'none',
         'background-image': 'url(img/bodybuilder2_peso2.png)'
     });
 
-    setTimeout(function() {
+    if (hasEnded) {
+        audioBirl.play();
+        hasEnded = false;
 
-        birlButton.css({
-            'pointer-events'  : 'auto',
-            'background-image': 'url(img/bodybuilder2_peso.png)'
-        });
+        setTimeout(function() {
 
-    }, 1000);
+            birlButton.css({
+                // 'pointer-events'  : 'auto',
+                'background-image': 'url(img/bodybuilder2_peso.png)'
+            });
+
+            hasEnded = true;
+
+        }, 1000);
+    }
 };
 
 var disableBambam = function() {
@@ -100,7 +110,7 @@ var size = 0;
 $("#barra-inner").css('height', size);
 
 function addBar(){
-    size += 10;
+    size += 10 / 5;
 
     if (size > 40 && size <= 80){$("#barra-inner").css('background-color', '#FF0'); }
     else if (size > 80){ $("#barra-inner").css('background-color', '#F00'); }

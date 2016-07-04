@@ -1,6 +1,6 @@
 jQuery(document).ready(function($) {
 
-    const birlLimit           = 10,
+    const birlLimit           = 10 * 10,
           birlMaxLevel        = 5,
           intervalLevelUm     = null,
           intervalLevelDois   = 3500,
@@ -91,7 +91,7 @@ jQuery(document).ready(function($) {
             setCounterText(self.birlCounter);
 
             if (self.birlCounter <= birlLimit) {
-                audioBirl.play();
+                // audioBirl.play();
                 addBar();
             }
         };
