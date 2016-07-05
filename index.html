@@ -27,13 +27,22 @@
 
     <div class="container">
         <div class="container-wrapper">
-            <div id="bambam">
-                <img id="bambam-img" src="img/bodybuilder2_peso.png">
+            <div id="bambam" class="player">
+                <img class="player-img" id="bambam-img" src="img/bodybuilder2_peso.png">
             </div>
-            <div id="bar-outer">
-                <div id="bar-inner"></div>
-                <span id="bar-thirteen">13</span>
-                <span id="bar-zero">0</span>
+            <div class="player-bar-outer" id="bar-outer">
+                <div class="player-bar-inner" id="bar-inner"></div>
+                <span class="player-bar-thirteen" id="bar-thirteen">13</span>
+                <span class="player-bar-zero" id="bar-zero">0</span>
+            </div>
+
+            <div id="leo" style="display: none;" class="player">
+                <img class="player-img" src="img/bodybuilder2_peso.png">
+            </div>
+            <div id="leobar" style="display: none;" class="player-bar-outer">
+                <div class="player-bar-inner"></div>
+                <span class="player-bar-thirteen">13</span>
+                <span class="player-bar-zero">0</span>
             </div>
         </div>
     </div>
@@ -62,7 +71,7 @@
     <!-- Modal -->
     <div id="modal" class="modal">
         <div class="modal-content">
-            <h1 id="next-level-text"></h1>
+            <h1 id="next-level-text">Pronto pra malhar o dedo?</h1>
             <a id="next-level-button" class="red btn">
                 Level <span id="next-level-span">1</span>
             </a>

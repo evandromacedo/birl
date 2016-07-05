@@ -54,6 +54,28 @@ var changeScenario = function(scenario) {
                 'backgorund-color': '#FFF'
             });
             break;
+
+        case 'palco':
+            body.css({
+                '-webkit-transition': 'all 3s',
+                'transition': 'all 3s'
+            });
+
+            // body.css({
+            //     'background-image': 'none',
+            //     'background-color': '#000'
+            // });
+            body.css({
+                'background': 'url(img/cenarios/stageb.jpg) no-repeat center bottom',
+                'background-color': '#000'
+            });
+
+            setTimeout(function() {
+                $('#leo').show(1500);
+                $('#leobar').show(1500);
+            }, 3000);
+
+            break;
     }
 };
 
@@ -101,6 +123,13 @@ var enableBambam = function() {
     });
 };
 
+// var disableBody = function() {
+//     body.css('pointer-events', 'none');
+// };
+
+// var enableBody = function() {
+//     body.css('pointer-events', 'auto');
+// };
 
 var barSize = 0;
 

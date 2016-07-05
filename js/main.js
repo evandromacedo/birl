@@ -77,8 +77,16 @@ jQuery(document).ready(function($) {
                     break;
 
                 case 5:
-                    self.birlInterval = setInterval(function() { self.decrementBirl(birlDownBoss) }, 100);
-                    self.birlCountdown = setInterval(self.countdown, 1000);
+                    setTimeout(function() {
+                        // enableBambam();
+                        disableBody();
+                        audioBoss = new Audio('audio/bondedamaromba.mp3');
+                        audioBoss.addEventListener('ended', function() {
+                            this.currentTime = 0;
+                            this.play();
+                        }, false);
+                        audioBoss.play();
+                    }, 3000);
                     break;
             }
         };
@@ -129,8 +137,9 @@ jQuery(document).ready(function($) {
 
                 switch (self.birlLevel) {
                     case 2:
-                        changeScenario('praia');
-                        openModal('Ta saindo da jaula o monstro!', 2);
+                        self.boss();
+                        changeScenario('palco');
+                        // openModal('Ta saindo da jaula o monstro!', 2);
                         break;
 
                     case 3:
@@ -144,12 +153,28 @@ jQuery(document).ready(function($) {
                         break;
 
                     case 5:
-                        changeScenario('academia');
-                        openModal('Ta saindo da jaula o monstro!', 5);
+                        // changeScenario('academia');
+                        // openModal('Ta saindo da jaula o monstro!', 5);
+                        self.boss();
                         break;
                 }
 
             }, 3000);
+        };
+
+        self.boss = function() {
+            disableBambam();
+
+            audioBoss = new Audio('audio/bondedamaromba.mp3');
+            audioBoss.addEventListener('ended', function() {
+                this.currentTime = 0;
+                this.play();
+            }, false);
+            audioBoss.play();
+
+            // setTimeout(function() {
+            //     enableBody();
+            // }, 3000);
         }
 
         self.restartBirl = function () {
