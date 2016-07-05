@@ -1,12 +1,13 @@
-var body            = $('body'),
-    birlButton      = $('#bambam'),
-    domBirlCounter  = $('#birl-counter'),
-    domBirlLevel    = $('#birl-level'),
-    domBirlTimer    = $('#birl-timer'),
-    modal           = $('#modal'),
-    nextLevelText   = $('#next-level-text'),
-    nextLevelSpan   = $('#next-level-span'),
-    audioBirl       = document.getElementById("birl");
+var body           = $('body'),
+    birlButton     = $('#bambam'),
+    domBirlCounter = $('#birl-counter'),
+    domBirlLevel   = $('#birl-level'),
+    domBirlTimer   = $('#birl-timer'),
+    modal          = $('#modal'),
+    nextLevelText  = $('#next-level-text'),
+    nextLevelSpan  = $('#next-level-span'),
+    innerBar       = $('#bar-inner'),
+    audioBirl      = document.getElementById("birl");
 
 var openModal = function(text, level) {
     modal.css('display', 'block');
@@ -89,6 +90,8 @@ var disableBambam = function() {
         'pointer-events'  : 'none',
         'background-image': 'url(img/bodybuilder2_peso3.png)'
     });
+
+    innerBar.css('height', '100%');
 };
 
 var enableBambam = function() {
@@ -98,41 +101,38 @@ var enableBambam = function() {
     });
 };
 
-/* - - - - - - - - - - - - - - - - - - - - - - - - - */
 
+var barSize = 0;
 
-/* - - - - - - - - - - - - - - - - - - - - - - - - - -
-    Gambiarra véa de Zé que depois eu ajeito
-- - - - - - - - - - - - - - - - - - - - - - - - - - */
-
-var size = 0;
-$("#barra-inner").css('height', size);
-
-function addBar(){
-    size += 10 / 5;
-
-    if (size > 40 && size <= 80){$("#barra-inner").css('background-color', '#FF0'); }
-    else if (size > 80){ $("#barra-inner").css('background-color', '#F00'); }
-    else{  $("#barra-inner").css('background-color', '#0F0'); }
-
-    $("#barra-inner").css('height', size+'%');
-}
-function rmvBar(){
-    if (size > 0) {
-        // Deixar isso dinâmico por level
-        size -= 0.1;
-
-        if (size > 40 && size <= 80){$("#barra-inner").css('background-color', '#FF0'); }
-        else if (size > 80){ $("#barra-inner").css('background-color', '#F00'); }
-        else{  $("#barra-inner").css('background-color', '#0F0'); }
-
-        $("#barra-inner").css('height', size+'%');
+var increaseBar = function(percent) {
+    if (barSize < 100) {
+        barSize += percent;
+        checkBar(barSize);
+        innerBar.css('height', barSize + '%');
     }
-}
-function clrBar(){
-    size = 0;
-    $("#barra-inner").css('height', size+'%');
-    $("#barra-inner").css('background-color', '#0F0');
-}
+    else
+        innerBar.css('height', '100%');
+};
 
-/* - - - - - - - - - - - - - - - - - - - - - - - - - */
+var decreaseBar = function(percent) {
+    if (barSize > 0) {
+        barSize -= percent;
+        checkBar(barSize);
+        innerBar.css('height', barSize + '%');
+    }
+};
+
+var clearBar = function() {
+    barSize = 0;
+    innerBar.css('height', '0');
+    innerBar.css('background-color', '#0F0');
+};
+
+var checkBar = function(barSize) {
+    if (barSize > 40 && barSize <= 80)
+        innerBar.css('background-color', '#FF0');
+    else if (barSize > 80)
+        innerBar.css('background-color', '#F00');
+    else
+        innerBar.css('background-color', '#0F0');
+};

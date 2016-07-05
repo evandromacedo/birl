@@ -55,7 +55,7 @@ body {
     margin  : 0 auto;
 }
 
-#barra-outer {
+#bar-outer {
     width           : 30px;
     height          : 100%;
     border          : 5px solid;
@@ -68,8 +68,9 @@ body {
     box-sizing        : border-box;
 }
 
-#barra-inner {
+#bar-inner {
     height          : 0px;
+    max-height      : 100%;
     position        : absolute;
     background-color: #0F0;
     width           : 100%;
@@ -79,18 +80,18 @@ body {
     transition        : all 0.4s;
 }
 
-#barra-zero, #barra-treze {
+#bar-zero, #bar-thirteen {
     position: absolute;
     left: 0;
     right: -2px;
     margin: 0 auto;
 }
 
-#barra-zero {
+#bar-zero {
     bottom: 4px;
 }
 
-#barra-treze {
+#bar-thirteen {
     top: 4px;
 }
 
