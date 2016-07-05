@@ -16,7 +16,7 @@ jQuery(document).ready(function($) {
           audioBodybuilder = document.getElementById("bodybuilder"),
           audioNegativa    = document.getElementById("negativa"),
           audioVaiDarNao   = document.getElementById("vaiDarNao"),
-          birlButton       = $('#bambam'),
+          birlButton       = $('#bambam > .player'),
           nextLevelButton  = $('#next-level-button');
 
     openModal();
@@ -220,7 +220,7 @@ jQuery(document).ready(function($) {
 });
 
 $(window).on('resize', function() {
-  $("#bambam").css('width', $('#bambam-img').width());
+  $("#bambam").css('width', $('#bambam > .player-img').width());
 });
 
 $(window).on('load', function() {

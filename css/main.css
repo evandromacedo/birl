@@ -14,9 +14,6 @@ body {
     -khtml-user-select         : none;
     -ms-user-select            : none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-
-    /*-webkit-transition: background-image 3s;
-    transition        : background-image 3s;*/
 }
 
 .container {
@@ -30,7 +27,11 @@ body {
     margin    : 0 auto;
 }
 
-#bambam, .player {
+#bambam, #leo {
+    display: inline;
+}
+
+.player {
     display            : inline-block;
     background-image   : url(../img/bodybuilder2_peso.png);
     background-position: 100% 100%;
@@ -41,24 +42,13 @@ body {
     cursor             : pointer;
 }
 
-#bambam-img, .player-img {
+.player-img {
     width     : auto;
     height    : 100%;
     visibility: hidden;
 }
 
-.container-wrapper {
-    width   : 100%;
-    height  : 65%;
-    display : inline;
-    position: absolute;
-    bottom  : 0;
-    left    : 0;
-    right   : 0;
-    margin  : 0 auto;
-}
-
-#bar-outer, .player-bar-outer {
+.player-bar-outer {
     width           : 30px;
     height          : 100%;
     border          : 5px solid;
@@ -71,7 +61,7 @@ body {
     box-sizing        : border-box;
 }
 
-#bar-inner, .player-bar-inner {
+.player-bar-inner {
     height          : 0px;
     max-height      : 100%;
     position        : absolute;
@@ -83,19 +73,30 @@ body {
     transition        : all 0.4s;
 }
 
-#bar-zero, #bar-thirteen, .player-bar-thirteen, .player-bar-zero {
+.player-bar-thirteen, .player-bar-zero {
     position: absolute;
     left: 0;
     right: -2px;
     margin: 0 auto;
 }
 
-#bar-zero, .player-bar-zero {
+.player-bar-zero {
     bottom: 4px;
 }
 
-#bar-thirteen, .player-bar-thirteen {
+.player-bar-thirteen {
     top: 4px;
+}
+
+.container-wrapper {
+    width   : 100%;
+    height  : 65%;
+    display : inline;
+    position: absolute;
+    bottom  : 0;
+    left    : 0;
+    right   : 0;
+    margin  : 0 auto;
 }
 
 #birlInit {

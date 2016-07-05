@@ -1,12 +1,12 @@
 var body           = $('body'),
-    birlButton     = $('#bambam'),
+    birlButton     = $('#bambam > .player'),
     domBirlCounter = $('#birl-counter'),
     domBirlLevel   = $('#birl-level'),
     domBirlTimer   = $('#birl-timer'),
     modal          = $('#modal'),
     nextLevelText  = $('#next-level-text'),
     nextLevelSpan  = $('#next-level-span'),
-    innerBar       = $('#bar-inner'),
+    innerBar       = $('#bambam .player-bar-inner'),
     audioBirl      = document.getElementById("birl");
 
 var openModal = function(text, level) {
