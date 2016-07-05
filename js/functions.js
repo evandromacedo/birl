@@ -60,26 +60,25 @@ var changeScenario = function(scenario) {
     O background-image vai mudar pra position
 - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-var hasEnded = true;
+birlTimeIsOver = true;
+toggleImageTimeout = null;
 
-var toggleBirlClick = function() {
+var toggleImage = function() {
     birlButton.css({
-        // 'pointer-events'  : 'none',
         'background-image': 'url(img/bodybuilder2_peso2.png)'
     });
 
-    if (hasEnded) {
+    if (birlTimeIsOver) {
         audioBirl.play();
-        hasEnded = false;
+        birlTimeIsOver = false;
 
-        setTimeout(function() {
+        toggleImageTimeout = setTimeout(function() {
 
             birlButton.css({
-                // 'pointer-events'  : 'auto',
                 'background-image': 'url(img/bodybuilder2_peso.png)'
             });
 
-            hasEnded = true;
+            birlTimeIsOver = true;
 
         }, 1000);
     }
@@ -119,14 +118,16 @@ function addBar(){
     $("#barra-inner").css('height', size+'%');
 }
 function rmvBar(){
-    size -= 10;
+    if (size > 0) {
+        // Deixar isso dinâmico por level
+        size -= 0.1;
 
+        if (size > 40 && size <= 80){$("#barra-inner").css('background-color', '#FF0'); }
+        else if (size > 80){ $("#barra-inner").css('background-color', '#F00'); }
+        else{  $("#barra-inner").css('background-color', '#0F0'); }
 
-    if (size > 260 && size <= 400){$("#barra-inner").css('background-color', '#FF0'); }
-    else if (size > 400){ $("#barra-inner").css('background-color', '#F00'); }
-    else{  $("#barra-inner").css('background-color', '#0F0'); }
-
-    $("#barra-inner").css('height', size+'%');
+        $("#barra-inner").css('height', size+'%');
+    }
 }
 function clrBar(){
     size = 0;

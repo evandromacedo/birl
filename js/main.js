@@ -1,6 +1,6 @@
 jQuery(document).ready(function($) {
 
-    const birlLimit           = 10 * 10,
+    const birlLimit           = 30,
           birlMaxLevel        = 5,
           intervalLevelUm     = null,
           intervalLevelDois   = 3500,
@@ -48,6 +48,10 @@ jQuery(document).ready(function($) {
         }
         /*********************************************/
 
+        // self.testando = function() {
+        //     rmvBar();
+        // }
+
         self.startBirl = function (restartBirlLevel) {
             if (restartBirlLevel)
                 self.birlLevel = 1;
@@ -62,6 +66,7 @@ jQuery(document).ready(function($) {
                     clearInterval(self.birlInterval);
                     setTimerText(self.birlTimer);
                     self.birlCountdown = setInterval(self.countdown, 1000);
+                    // self.testeInterval = setInterval(self.testando, 100);
                     break;
 
                 case 2:
@@ -118,7 +123,9 @@ jQuery(document).ready(function($) {
         }
 
         self.finishLevel = function() {
+            clearTimeout(toggleImageTimeout);
             disableBambam();
+            birlTimeIsOver = true;
             clearInterval(self.birlCountdown);
             clearInterval(self.birlInterval);
             self.birlLevel++;
@@ -192,7 +199,7 @@ jQuery(document).ready(function($) {
             return;
         }
 
-        toggleBirlClick();
+        toggleImage();
     });
 
 });

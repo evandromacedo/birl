@@ -75,8 +75,8 @@ body {
     width           : 100%;
     bottom          : 0;
 
-    -webkit-transition: all 1s;
-    transition        : all 1s;
+    -webkit-transition: all 0.4s;
+    transition        : all 0.4s;
 }
 
 #barra-zero, #barra-treze {
