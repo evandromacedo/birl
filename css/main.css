@@ -27,8 +27,12 @@ body {
     margin    : 0 auto;
 }
 
-#bambam, #leo {
+#bambam {
     display: inline;
+}
+
+#leo {
+    display: none;
 }
 
 .player {

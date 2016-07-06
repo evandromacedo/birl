@@ -1,6 +1,6 @@
 jQuery(document).ready(function($) {
 
-    const birlLimit        = 100,
+    const birlLimit        = 10,
           birlPercentUp    = 2,
           birlMaxLevel     = 5,
           birlLevelTimer   = 20,
@@ -48,6 +48,7 @@ jQuery(document).ready(function($) {
             if (restartBirlLevel)
                 self.birlLevel = 1;
 
+            enableBambam();
             self.birlCounter = 0;
             self.birlTimer   = birlLevelTimer;
             setCounterText(self.birlCounter);
@@ -77,16 +78,16 @@ jQuery(document).ready(function($) {
                     break;
 
                 case 5:
-                    setTimeout(function() {
-                        // enableBambam();
-                        disableBody();
-                        audioBoss = new Audio('audio/bondedamaromba.mp3');
-                        audioBoss.addEventListener('ended', function() {
-                            this.currentTime = 0;
-                            this.play();
-                        }, false);
-                        audioBoss.play();
-                    }, 3000);
+                    // setTimeout(function() {
+                    //     // enableBambam();
+                    //     disableBody();
+                    //     audioBoss = new Audio('audio/bondedamaromba.mp3');
+                    //     audioBoss.addEventListener('ended', function() {
+                    //         this.currentTime = 0;
+                    //         this.play();
+                    //     }, false);
+                    //     audioBoss.play();
+                    // }, 3000);
                     break;
             }
         };
@@ -131,14 +132,14 @@ jQuery(document).ready(function($) {
             setTimeout(function() {
 
                 clearBar();
-                enableBambam();
+                // enableBambam();
                 self.birlTimer = birlLevelTimer;
                 setTimerText(self.birlTimer);
 
                 switch (self.birlLevel) {
                     case 2:
                         self.boss();
-                        changeScenario('palco');
+                        // changeScenario('palco');
                         // openModal('Ta saindo da jaula o monstro!', 2);
                         break;
 
@@ -163,7 +164,8 @@ jQuery(document).ready(function($) {
         };
 
         self.boss = function() {
-            disableBambam();
+            // disableBambam();
+            changeScenario('palco');
 
             audioBoss = new Audio('audio/bondedamaromba.mp3');
             audioBoss.addEventListener('ended', function() {
@@ -172,9 +174,18 @@ jQuery(document).ready(function($) {
             }, false);
             audioBoss.play();
 
-            // setTimeout(function() {
-            //     enableBody();
-            // }, 3000);
+            setTimeout(function() {
+                document.getElementById('monstro').play();
+                $('#leo').fadeIn(1500).css('display', 'inline');
+            }, 3000);
+
+            setTimeout(function() {
+                document.getElementById('monstro').play();
+            }, 5000);
+
+            setTimeout(function() {
+                openModal('Teste', 'Boss');
+            }, 6500);
         }
 
         self.restartBirl = function () {
@@ -189,7 +200,8 @@ jQuery(document).ready(function($) {
     }, bambam = new HoraDoShow();
 
     $('#birlInit').on('click', function() {
-        bambam.restartBirl();
+        console.log('asd');
+        // bambam.restartBirl();
     });
 
     nextLevelButton.on('click', function() {

@@ -56,24 +56,20 @@ var changeScenario = function(scenario) {
             break;
 
         case 'palco':
+            birlButton.css({
+                'pointer-events'  : 'none',
+                'background-image': 'url(img/bodybuilder2_peso.png)'
+            });
+
             body.css({
                 '-webkit-transition': 'all 3s',
                 'transition': 'all 3s'
             });
 
-            // body.css({
-            //     'background-image': 'none',
-            //     'background-color': '#000'
-            // });
             body.css({
                 'background': 'url(img/cenarios/stageb.jpg) no-repeat center bottom',
                 'background-color': '#000'
             });
-
-            setTimeout(function() {
-                $('#leo').show(1500);
-                $('#leobar').show(1500);
-            }, 3000);
 
             break;
     }
