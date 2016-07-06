@@ -110,17 +110,17 @@ toggleLeoImageTimeout = null;
 
 var toggleLeoImage = function() {
     leoButton.css({
-        'background-image': 'url(img/bodybuilder2_peso2.png)'
+        'background-image': 'url(img/leo_2.png)'
     });
 
     if (leoTimeIsOver) {
-        audioBirl.play();
+        document.getElementById('birl2').play();
         leoTimeIsOver = false;
 
         toggleLeoImageTimeout = setTimeout(function() {
 
             leoButton.css({
-                'background-image': 'url(img/bodybuilder2_peso.png)'
+                'background-image': 'url(img/leo_1.png)'
             });
 
             leoTimeIsOver = true;
@@ -140,7 +140,7 @@ var disableBambam = function() {
 
 var disableLeo = function() {
     leoButton.css({
-        'background-image': 'url(img/bodybuilder2_peso3.png)'
+        'background-image': 'url(img/leo_2.png)'
     });
 
     innerLeoBar.css('height', '100%');
@@ -155,7 +155,7 @@ var enableBambam = function() {
 
 var enableLeo = function() {
     leoButton.css({
-        'background-image': 'url(img/bodybuilder2_peso.png)'
+        'background-image': 'url(img/leo_2.png)'
     });
 };
 

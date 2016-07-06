@@ -35,9 +35,16 @@ body {
     display: none;
 }
 
+#bambam .player {
+    background-image: url(../img/bodybuilder2_peso.png);
+}
+
+#leo .player {
+    background-image: url(../img/leo_1.png);
+}
+
 .player {
     display            : inline-block;
-    background-image   : url(../img/bodybuilder2_peso.png);
     background-position: 100% 100%;
     background-size    : auto 100%;
     background-repeat  : no-repeat;
