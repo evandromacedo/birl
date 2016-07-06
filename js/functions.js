@@ -1,5 +1,6 @@
 var body           = $('body'),
     birlButton     = $('#bambam > .player'),
+    leoButton      = $('#leo > .player'),
     domBirlCounter = $('#birl-counter'),
     domBirlLevel   = $('#birl-level'),
     domBirlTimer   = $('#birl-timer'),
@@ -7,6 +8,7 @@ var body           = $('body'),
     nextLevelText  = $('#next-level-text'),
     nextLevelSpan  = $('#next-level-span'),
     innerBar       = $('#bambam .player-bar-inner'),
+    innerLeoBar    = $('#leo .player-bar-inner'),
     audioBirl      = document.getElementById("birl");
 
 var openModal = function(text, level) {
@@ -103,6 +105,30 @@ var toggleImage = function() {
     }
 };
 
+leoTimeIsOver = true;
+toggleLeoImageTimeout = null;
+
+var toggleLeoImage = function() {
+    leoButton.css({
+        'background-image': 'url(img/bodybuilder2_peso2.png)'
+    });
+
+    if (leoTimeIsOver) {
+        audioBirl.play();
+        leoTimeIsOver = false;
+
+        toggleLeoImageTimeout = setTimeout(function() {
+
+            leoButton.css({
+                'background-image': 'url(img/bodybuilder2_peso.png)'
+            });
+
+            leoTimeIsOver = true;
+
+        }, 1100);
+    }
+};
+
 var disableBambam = function() {
     birlButton.css({
         'pointer-events'  : 'none',
@@ -112,9 +138,23 @@ var disableBambam = function() {
     innerBar.css('height', '100%');
 };
 
+var disableLeo = function() {
+    leoButton.css({
+        'background-image': 'url(img/bodybuilder2_peso3.png)'
+    });
+
+    innerLeoBar.css('height', '100%');
+};
+
 var enableBambam = function() {
     birlButton.css({
         'pointer-events'  : 'auto',
+        'background-image': 'url(img/bodybuilder2_peso.png)'
+    });
+};
+
+var enableLeo = function() {
+    leoButton.css({
         'background-image': 'url(img/bodybuilder2_peso.png)'
     });
 };
@@ -127,7 +167,8 @@ var enableBambam = function() {
 //     body.css('pointer-events', 'auto');
 // };
 
-var barSize = 0;
+var barSize    = 0,
+    leoBarSize = 0;
 
 var increaseBar = function(percent) {
     if (barSize < 100) {
@@ -139,6 +180,16 @@ var increaseBar = function(percent) {
         innerBar.css('height', '100%');
 };
 
+var increaseLeoBar = function(percent) {
+    if (leoBarSize < 100) {
+        leoBarSize += percent;
+        checkBar(leoBarSize);
+        innerLeoBar.css('height', leoBarSize + '%');
+    }
+    else
+        innerLeoBar.css('height', '100%');
+};
+
 var decreaseBar = function(percent) {
     if (barSize > 0) {
         barSize -= percent;
@@ -147,10 +198,24 @@ var decreaseBar = function(percent) {
     }
 };
 
+var decreaseLeoBar = function(percent) {
+    if (leoBarSize > 0) {
+        leoBarSize -= percent;
+        checkBar(leoBarSize);
+        innerLeoBar.css('height', leoBarSize + '%');
+    }
+};
+
 var clearBar = function() {
     barSize = 0;
     innerBar.css('height', '0');
     innerBar.css('background-color', '#0F0');
+};
+
+var clearLeoBar = function() {
+    leoBarSize = 0;
+    innerLeoBar.css('height', '0');
+    innerLeoBar.css('background-color', '#0F0');
 };
 
 var checkBar = function(barSize) {
