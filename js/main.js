@@ -138,9 +138,16 @@ jQuery(document).ready(function($) {
         };
 
         self.theEnd = function() {
-            clearTimeout(toggleImageTimeout);
-            disableBambam();
-            birlTimeIsOver = true;
+            self.audioBoss.pause();
+
+            bgAudio = new Audio('audio/index.ogg');
+            bgAudio.addEventListener('ended', function() {
+                this.currentTime = 0;
+                this.play();
+            }, false);
+            bgAudio.play();
+
+            openModal('É 37 ANOS PORRA!', 'WHOOOOOOOOOO');
         }
 
 
@@ -170,6 +177,7 @@ jQuery(document).ready(function($) {
                         break;
 
                     case 3:
+                        self.theEnd();
                         return;
                         break;
 
@@ -198,12 +206,12 @@ jQuery(document).ready(function($) {
         };
 
         self.boss = function() {
-            audioBoss = new Audio('audio/bondedamaromba.mp3');
-            audioBoss.addEventListener('ended', function() {
+            self.audioBoss = new Audio('audio/bondedamaromba.mp3');
+            self.audioBoss.addEventListener('ended', function() {
                 this.currentTime = 0;
                 this.play();
             }, false);
-            audioBoss.play();
+            self.audioBoss.play();
 
             setTimeout(function() {
                 audioMonstro.play();
