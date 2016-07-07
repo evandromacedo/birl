@@ -1,10 +1,19 @@
 @import url('normalize.css');
 
+@font-face {
+    font-family: 'Pixel Emulator';
+    src: url('font/pixel_emulator-webfont.woff2') format('woff2'),
+         url('font/pixel_emulator-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
     background        : url('../img/cenarios/cenario_academia.jpg') repeat-x center bottom;
     background-color  : #b4f8f9;
     background-size   : auto 100% !important;
-    font-family       : '8BITWONDERNominal';
+    font-family       : 'Pixel Emulator';
+    /*text-transform    : uppercase;*/
     font-size         : 62.5%;
     alignment-baseline: baseline;
     height            : 100vh;
@@ -14,6 +23,31 @@ body {
     -khtml-user-select         : none;
     -ms-user-select            : none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+    /*text-shadow: 1px 1px 0 #000,
+    -1px 1px 0 #000,
+    1px -1px 0 #000,
+    -1px -1px 0 #000,
+    0px 1px 0 #000,
+    0px -1px 0 #000,
+    -1px 0px 0 #000,
+    1px 0px 0 #000,
+    2px 2px 0 #000,
+    -2px 2px 0 #000,
+    2px -2px 0 #000,
+    -2px -2px 0 #000,
+    0px 2px 0 #000,
+    0px -2px 0 #000,
+    -2px 0px 0 #000,
+    2px 0px 0 #000,
+    1px 2px 0 #000,
+    -1px 2px 0 #000,
+    1px -2px 0 #000,
+    -1px -2px 0 #000,
+    2px 1px 0 #000,
+    -2px 1px 0 #000,
+    2px -1px 0 #000,
+    -2px -1px 0 #000;*/
 }
 
 .container {
@@ -183,7 +217,7 @@ a {
 }
 
 .modal-content h1 {
-    -webkit-text-stroke: 3px black;
+    /*-webkit-text-stroke: 3px black;*/
 }
 
 .modal-close:hover,
@@ -212,4 +246,32 @@ a {
     height: 140px;
     margin-top: -70px;
     margin-left: -70px;
+}
+
+/* I know... I know. */
+.text-stroke {
+    text-shadow: 1px 1px 0 #000,
+    -1px 1px 0 #000,
+    1px -1px 0 #000,
+    -1px -1px 0 #000,
+    0px 1px 0 #000,
+    0px -1px 0 #000,
+    -1px 0px 0 #000,
+    1px 0px 0 #000,
+    2px 2px 0 #000,
+    -2px 2px 0 #000,
+    2px -2px 0 #000,
+    -2px -2px 0 #000,
+    0px 2px 0 #000,
+    0px -2px 0 #000,
+    -2px 0px 0 #000,
+    2px 0px 0 #000,
+    1px 2px 0 #000,
+    -1px 2px 0 #000,
+    1px -2px 0 #000,
+    -1px -2px 0 #000,
+    2px 1px 0 #000,
+    -2px 1px 0 #000,
+    2px -1px 0 #000,
+    -2px -1px 0 #000;
 }
