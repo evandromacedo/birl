@@ -296,7 +296,8 @@ jQuery(document).ready(function($) {
 });
 
 $(window).on('resize', function() {
-  $("#bambam").css('width', $('#bambam > .player-img').width());
+  $("#bambam .player").css('width', $('#bambam .player-img').width());
+  $("#leo .player").css('width', $('#leo .player-img').width());
 });
 
 $(window).on('load', function() {
