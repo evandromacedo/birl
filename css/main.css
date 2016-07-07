@@ -37,6 +37,7 @@ body {
 
 #bambam .player {
     background-image: url(../img/bodybuilder2_peso.png);
+    cursor: pointer;
 }
 
 #leo .player {
@@ -50,7 +51,6 @@ body {
     background-repeat  : no-repeat;
     width              : auto;
     height             : 100%;
-    cursor             : pointer;
 }
 
 .player-img {

@@ -4,7 +4,7 @@ jQuery(document).ready(function($) {
           birlPercentUp    = 2,
           birlMaxLevel     = 5,
           birlLevelTimer   = 20,
-          birlDownOne      = 0.1,
+          birlDownOne      = 0,
           birlDownTwo      = 0.3,
           birlDownThree    = 0.5,
           birlDownFour     = 0.7,
@@ -31,17 +31,22 @@ jQuery(document).ready(function($) {
             clearInterval(self.frangoInterval);
             clearInterval(self.monstroInterval);
             self.frangoInterval = setInterval(function() { self.decrementMonstro(birlDownBoss) }, 100);
-            self.monstroInterval = setInterval(function() { self.incrementMonstro(5) }, 100);
+            self.monstroInterval = setInterval(function() { self.incrementMonstro() }, 100);
         };
 
         self.finish = function() {
+            clearTimeout(toggleLeoImageTimeout);
+            leoTimeIsOver = true;
             disableLeo();
+            bambamLose();
+            clearInterval(self.frangoInterval);
             clearInterval(self.monstroInterval);
 
             setTimeout(function() {
+                clearBar();
                 clearLeoBar();
                 enableLeo();
-                openModal('Teste', 'Level Boss');
+                openModal('Teste', 'Boss');
             }, 3000);
         };
 
@@ -51,6 +56,10 @@ jQuery(document).ready(function($) {
 
             if (self.monstroCounter <= birlLimit) {
                 increaseLeoBar(birlPercentUp);
+            }
+
+            if (self.monstroCounter >= birlLimit) {
+                self.finish();
             }
         };
 
@@ -106,6 +115,7 @@ jQuery(document).ready(function($) {
                 case 2:
                     self.leo = new Leo();
                     self.leo.monstroStart();
+                    self.birlInterval ? clearInterval(self.birlInterval) : null;
                     self.birlInterval = setInterval(function() { self.decrementBirl(birlDownBoss) }, 100);
                     // self.birlCountdown = setInterval(self.countdown, 1000);
                     break;
@@ -127,6 +137,12 @@ jQuery(document).ready(function($) {
             }
         };
 
+        self.theEnd = function() {
+            clearTimeout(toggleImageTimeout);
+            disableBambam();
+            birlTimeIsOver = true;
+        }
+
 
         self.finishLevel = function() {
             clearTimeout(toggleImageTimeout);
@@ -134,14 +150,16 @@ jQuery(document).ready(function($) {
             birlTimeIsOver = true;
             clearInterval(self.birlCountdown);
             clearInterval(self.birlInterval);
+
+            if (self.birlLevel == 2) {
+                clearInterval(self.leo.frangoInterval);
+                clearInterval(self.leo.monstroInterval);
+                leoLose();
+            }
+
             self.birlLevel++;
 
             setTimeout(function() {
-
-                clearBar();
-                // enableBambam();
-                self.birlTimer = birlLevelTimer;
-                setTimerText(self.birlTimer);
 
                 switch (self.birlLevel) {
                     case 2:
@@ -152,9 +170,13 @@ jQuery(document).ready(function($) {
                         break;
 
                     case 3:
-                        changeScenario('academia');
-                        openModal('Ta saindo da jaula o monstro!', 3);
+                        return;
                         break;
+
+                    // case 3:
+                    //     changeScenario('academia');
+                    //     openModal('Ta saindo da jaula o monstro!', 3);
+                    //     break;
 
                     case 4:
                         changeScenario('praia');
@@ -168,6 +190,10 @@ jQuery(document).ready(function($) {
                         break;
                 }
 
+                clearBar();
+                // enableBambam();
+                self.birlTimer = birlLevelTimer;
+                setTimerText(self.birlTimer);
             }, 3000);
         };
 

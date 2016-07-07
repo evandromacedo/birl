@@ -114,7 +114,7 @@ var toggleLeoImage = function() {
     });
 
     if (leoTimeIsOver) {
-        document.getElementById('birl2').play();
+        // document.getElementById('birl2').play();
         leoTimeIsOver = false;
 
         toggleLeoImageTimeout = setTimeout(function() {
@@ -155,9 +155,26 @@ var enableBambam = function() {
 
 var enableLeo = function() {
     leoButton.css({
-        'background-image': 'url(img/leo_2.png)'
+        'background-image': 'url(img/leo_1.png)'
     });
 };
+
+var bambamLose = function() {
+    birlButton.css({
+        'pointer-events'  : 'none',
+        'background-image': 'url(img/bodybuilder2_peso.png)'
+    });
+
+    clearBar();
+}
+
+var leoLose = function() {
+    leoButton.css({
+        'background-image': 'url(img/leo_2.png)'
+    });
+
+    clearLeoBar();
+}
 
 // var disableBody = function() {
 //     body.css('pointer-events', 'none');
@@ -183,7 +200,7 @@ var increaseBar = function(percent) {
 var increaseLeoBar = function(percent) {
     if (leoBarSize < 100) {
         leoBarSize += percent;
-        checkBar(leoBarSize);
+        checkLeoBar(leoBarSize);
         innerLeoBar.css('height', leoBarSize + '%');
     }
     else
@@ -225,4 +242,13 @@ var checkBar = function(barSize) {
         innerBar.css('background-color', '#F00');
     else
         innerBar.css('background-color', '#0F0');
+};
+
+var checkLeoBar = function(barSize) {
+    if (barSize > 40 && barSize <= 80)
+        innerLeoBar.css('background-color', '#FF0');
+    else if (barSize > 80)
+        innerLeoBar.css('background-color', '#F00');
+    else
+        innerLeoBar.css('background-color', '#0F0');
 };
