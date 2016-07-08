@@ -161,7 +161,7 @@ a {
 .btn {
     padding: 0.5rem 1rem;
     height: 2em;
-    width: 13em;
+    width: 30vh;
     line-height: 2em;
     display: inline-block;
     color: #fff;
@@ -192,6 +192,26 @@ a {
 
 /* Modal Stuff */
 
+/* Instructions */
+
+#modal-instruction {
+    z-index: 2;
+}
+
+#modal-instruction .modal-content {
+    background-color: #3B4446;
+    border: 1em solid #404E55;
+    padding: 0.5em;
+}
+
+#modal-instruction-heading {
+    font-size: 1.5em;
+}
+
+#modal-instruction-text {
+    text-align: center;
+}
+
 .modal {
     display         : none;
     position        : fixed;
@@ -211,7 +231,7 @@ a {
     width     : 80%;
     max-width : 800px;
     color     : #FFF;
-    font-size : 3vh;
+    font-size : 3.5vh;
     text-align: center;
 }
 

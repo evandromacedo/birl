@@ -269,6 +269,7 @@ jQuery(document).ready(function($) {
     });
 
     nextLevelButton.on('click', function() {
+        console.log('lol');
         if (bambam.birlLevel == 1)
             bambam.startBirl();
         else
