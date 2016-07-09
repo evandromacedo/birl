@@ -1,20 +1,34 @@
-var body           = $('body'),
-    birlButton     = $('#bambam > .player'),
-    leoButton      = $('#leo > .player'),
-    domBirlCounter = $('#birl-counter'),
-    domBirlLevel   = $('#birl-level'),
-    domBirlTimer   = $('#birl-timer'),
-    modal          = $('#modal'),
-    nextLevelText  = $('#next-level-text'),
-    nextLevelSpan  = $('#next-level-span'),
-    innerBar       = $('#bambam .player-bar-inner'),
-    innerLeoBar    = $('#leo .player-bar-inner'),
-    audioBirl      = document.getElementById("birl");
+var body               = $('body'),
+    birlButton         = $('#bambam > .player'),
+    leoButton          = $('#leo > .player'),
+    domBirlCounter     = $('#birl-counter'),
+    domBirlLevel       = $('#birl-level'),
+    domBirlTimer       = $('#birl-timer'),
+    modal              = $('#modal'),
+    modalInstruction   = $('#modal-instruction'),
+    instructionHeading = $('#modal-instruction-heading'),
+    instructionText    = $('#modal-instruction-text'),
+    instructionButton  = $('#modal-instruction-button'),
+    nextLevelText      = $('#next-level-text'),
+    nextLevelSpan      = $('#next-level-span'),
+    innerBar           = $('#bambam .player-bar-inner'),
+    innerLeoBar        = $('#leo .player-bar-inner'),
+    audioBirl          = document.getElementById("birl");
 
 var openModal = function(text, level) {
     modal.css('display', 'block');
     nextLevelText.text(text);
     nextLevelSpan.text(level);
+};
+
+var openInstructionModal = function(heading, text) {
+    modalInstruction.css('display', 'block');
+    instructionHeading.text(heading);
+    instructionText.text(text);
+};
+
+var closeInstructionModal = function() {
+    modalInstruction.css('display', 'none');
 };
 
 var closeModal = function() {
@@ -252,3 +266,8 @@ var checkLeoBar = function(barSize) {
     else
         innerLeoBar.css('background-color', '#0F0');
 };
+
+instructionButton.on('click', function() {
+    closeInstructionModal();
+});
+

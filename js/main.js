@@ -20,6 +20,7 @@ jQuery(document).ready(function($) {
           birlButton       = $('#bambam > .player'),
           nextLevelButton  = $('#next-level-button');
 
+    openInstructionModal('Instruções:', 'Clique o mais rápido que puder para buscar o 13 no trapézio descendente antes que o tempo acabe. A cada level a dificuldade aumenta.');
     openModal();
 
     var Leo = function() {
@@ -46,7 +47,7 @@ jQuery(document).ready(function($) {
                 clearBar();
                 clearLeoBar();
                 enableLeo();
-                openModal('Teste', 'Boss');
+                openModal('Mudante VS Monstro', 'Boss');
             }, 3000);
         };
 
@@ -173,7 +174,7 @@ jQuery(document).ready(function($) {
                         changeScenario('palco');
                         self.boss();
                         // changeScenario('praia');
-                        // openModal('Ta saindo da jaula o monstro!', 2);
+                        // openModal('Ta saindo da jaula o monstro', 2);
                         break;
 
                     case 3:
@@ -183,12 +184,12 @@ jQuery(document).ready(function($) {
 
                     // case 3:
                     //     changeScenario('academia');
-                    //     openModal('Ta saindo da jaula o monstro!', 3);
+                    //     openModal('Aqui faz verão o ano inteiro', 3);
                     //     break;
 
                     case 4:
                         changeScenario('praia');
-                        openModal('Ta saindo da jaula o monstro!', 4);
+                        openModal('Ajuda o maluco que ta doente', 4);
                         break;
 
                     case 5:
@@ -219,7 +220,8 @@ jQuery(document).ready(function($) {
             }, 3000);
 
             setTimeout(function() {
-                openModal('Teste', 'Boss');
+                openInstructionModal('Boss!', 'Leo Stronda ficou puto e chamou Bambam para um desafio. O primeiro que atingir o 13 no trapézio descendente ganha. O perdedor leva o título de frango do ano.');
+                openModal('Mutante VS Monstro', 'Boss');
             }, 6500);
         };
 
@@ -264,12 +266,11 @@ jQuery(document).ready(function($) {
     }, bambam = new HoraDoShow();
 
     $('#birlInit').on('click', function() {
-        console.log('asd');
+        // console.log('asd');
         // bambam.restartBirl();
     });
 
     nextLevelButton.on('click', function() {
-        console.log('lol');
         if (bambam.birlLevel == 1)
             bambam.startBirl();
         else
