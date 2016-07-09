@@ -49,15 +49,16 @@ body {
     -2px -1px 0 #000;*/
 }
 
-.container {
+.container-wrapper {
     text-align: center;
-    position  : absolute;
-    bottom    : 15%;
-    left      : 0;
-    right     : 0;
-    width     : 100%;
-    height    : 80%;
-    margin    : 0 auto;
+    width   : 100%;
+    height  : 50%;
+    /*display : inline;*/
+    position: absolute;
+    bottom  : 15%;
+    left    : 0;
+    right   : 0;
+    margin  : 0 auto;
 }
 
 #bambam {
@@ -132,16 +133,7 @@ body {
     top: 4px;
 }
 
-.container-wrapper {
-    width   : 100%;
-    height  : 65%;
-    display : inline;
-    position: absolute;
-    bottom  : 0;
-    left    : 0;
-    right   : 0;
-    margin  : 0 auto;
-}
+
 
 #birlInit {
     width    : 300px;
@@ -229,7 +221,7 @@ a {
 .modal-content {
     margin    : auto;
     width     : 80%;
-    max-width : 800px;
+    /*max-width : 800px;*/
     color     : #FFF;
     font-size : 3.5vh;
     text-align: center;

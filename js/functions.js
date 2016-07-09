@@ -87,6 +87,14 @@ var changeScenario = function(scenario) {
                 'background-color': '#000'
             });
 
+            setInterval(function() {
+                body.css({
+                    '-webkit-transition': 'none',
+                    'transition': 'none'
+                });
+            }, 3000);
+
+
             break;
     }
 };
