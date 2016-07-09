@@ -28,7 +28,7 @@ var openInstructionModal = function(heading, text) {
 };
 
 var closeInstructionModal = function() {
-    modalInstruction.css('display', 'none');
+    modalInstruction.fadeOut(200);
 };
 
 var closeModal = function() {

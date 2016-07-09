@@ -220,7 +220,7 @@ jQuery(document).ready(function($) {
             }, 3000);
 
             setTimeout(function() {
-                openInstructionModal('Boss!', 'Leo Stronda ficou puto e chamou Bambam para um desafio. O primeiro que atingir o 13 no trapézio descendente ganha. O perdedor leva o título de frango do ano.');
+                openInstructionModal('Boss!', 'Leo Stronda ficou puto e chamou Bambam para um desafio. O primeiro que atingir o 13 no trapézio descendente, ganha. O perdedor leva o título de frango do ano.');
                 openModal('Mutante VS Monstro', 'Boss');
             }, 6500);
         };
