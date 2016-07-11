@@ -308,12 +308,10 @@ $(window).on('load', function() {
 });
 
 $(window).focus(function() {
-    $('title').text('AEEEEEEEEEEEE');
+    $('title').text('Hora do Show, porra!');
     console.log('teste');
 });
 
 $(window).blur(function() {
-    $('title').text('CADEEEEEEEE');
+    $('title').text('BORA CARALHO, CÊ QUER VER ESSA PORRA V');
 });
-
-
