@@ -20,8 +20,8 @@ jQuery(document).ready(function($) {
           birlButton       = $('#bambam > .player'),
           nextLevelButton  = $('#next-level-button');
 
-    openInstructionModal('Instruções:', 'Clique o mais rápido que puder para buscar o 13 no trapézio descendente antes que o tempo acabe. A cada level a dificuldade aumenta.');
-    openModal();
+    // openInstructionModal('Instruções:', 'Clique o mais rápido que puder para buscar o 13 no trapézio descendente antes que o tempo acabe. A cada level a dificuldade aumenta.');
+    // openModal();
 
     var Leo = function() {
         var self = this;
@@ -306,3 +306,14 @@ $(window).on('load', function() {
     $('.loading').fadeOut(400);
     document.getElementById('show').play();
 });
+
+$(window).focus(function() {
+    $('title').text('AEEEEEEEEEEEE');
+    console.log('teste');
+});
+
+$(window).blur(function() {
+    $('title').text('CADEEEEEEEE');
+});
+
+
