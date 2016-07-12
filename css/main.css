@@ -369,6 +369,7 @@ grey {
    .logo { height: 11vh; background-size: auto 100%;}
    [class*='col-'] { height: 15vh; }
    .header-signal { font-size: 1em; }
+   .body-container { height: 38%; } /* Teste */
 }
 
 @media all and (max-width: 1400px) and (min-width: 801px) {
