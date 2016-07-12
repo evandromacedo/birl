@@ -47,7 +47,7 @@ jQuery(document).ready(function($) {
                 clearBar();
                 clearLeoBar();
                 enableLeo();
-                openModal('Mudante VS Monstro', 'Boss');
+                openModal('Mutante VS Monstro', 'Boss');
             }, 3000);
         };
 
@@ -214,10 +214,7 @@ jQuery(document).ready(function($) {
             }, false);
             self.audioBoss.play();
 
-            setTimeout(function() {
-                audioMonstro.play();
-                $('#leo').fadeIn(1500).css('display', 'inline');
-            }, 3000);
+            showBoss();
 
             setTimeout(function() {
                 openInstructionModal('Boss!', 'Leo Stronda ficou puto e chamou Bambam para um desafio. O primeiro que atingir o 13 no trapézio descendente, ganha. O perdedor leva o título de frango do ano.');
@@ -309,7 +306,6 @@ $(window).on('load', function() {
 
 $(window).focus(function() {
     $('title').text('Hora do Show, porra!');
-    console.log('teste');
 });
 
 $(window).blur(function() {

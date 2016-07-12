@@ -145,6 +145,61 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
+/* Vertical Bar tests */
+.player-vertical-bar-outer {
+    display: none;
+    width: 100%;
+    height: 30px;
+    border          : 5px solid;
+    background-color: #F5F5F5;
+    /*display         : inline-block;*/
+    position        : relative;
+    top: -30%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing   : border-box;
+    box-sizing        : border-box;
+}
+
+.player-vertical-bar-inner {
+    width          : 0px;
+    max-width      : 100%;
+    position        : absolute;
+    background-color: #0F0;
+    height          : 100%;
+
+    -webkit-transition: all 0.4s;
+    transition        : all 0.4s;
+}
+
+.player-vertical-bar-bambam .player-vertical-bar-inner {
+    left: 0;
+}
+
+.player-vertical-bar-leo .player-vertical-bar-inner {
+    right: 0;
+}
+
+.player-vertical-bar-thirtheen, .player-vertical-bar-zero {
+    position: absolute;
+    top: 4px;
+}
+
+.player-vertical-bar-bambam .player-vertical-bar-thirtheen {
+    right: 4px;
+}
+
+.player-vertical-bar-leo .player-vertical-bar-thirtheen {
+    left: 4px;
+}
+
+.player-vertical-bar-bambam .player-vertical-bar-zero {
+    left: 4px;
+}
+
+.player-vertical-bar-leo .player-vertical-bar-zero {
+    right: 4px;
+}
+/***********************/
 
 #birlInit {
     width    : 300px;
@@ -369,7 +424,7 @@ grey {
    .logo { height: 11vh; background-size: auto 100%;}
    [class*='col-'] { height: 15vh; }
    .header-signal { font-size: 1em; }
-   .body-container { height: 38%; } /* Teste */
+   .body-container { height: 22%; } /* Teste */
 }
 
 @media all and (max-width: 1400px) and (min-width: 801px) {

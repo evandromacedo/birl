@@ -13,7 +13,9 @@ var body               = $('body'),
     nextLevelSpan      = $('#next-level-span'),
     innerBar           = $('#bambam .player-bar-inner'),
     innerLeoBar        = $('#leo .player-bar-inner'),
-    audioBirl          = document.getElementById("birl");
+    audioBirl          = document.getElementById("birl"),
+    audioMonstro       = document.getElementById("monstro"),
+    isResponsiveWidth  = window.innerWidth <= 800 ? true : false;
 
 var openModal = function(text, level) {
     modal.css('display', 'block');
@@ -207,33 +209,37 @@ var leoLose = function() {
 // };
 
 var barSize    = 0,
-    leoBarSize = 0;
+    leoBarSize = 0,
+    barOrientation = 'height';
 
 var increaseBar = function(percent) {
     if (barSize < 100) {
         barSize += percent;
         checkBar(barSize);
-        innerBar.css('height', barSize + '%');
+        innerBar.css(barOrientation, barSize + '%');
     }
     else
-        innerBar.css('height', '100%');
+        innerBar.css(barOrientation, '100%');
 };
+
+
 
 var increaseLeoBar = function(percent) {
     if (leoBarSize < 100) {
         leoBarSize += percent;
         checkLeoBar(leoBarSize);
-        innerLeoBar.css('height', leoBarSize + '%');
+        innerLeoBar.css(barOrientation, leoBarSize + '%');
     }
     else
-        innerLeoBar.css('height', '100%');
+        innerLeoBar.css(barOrientation, '100%');
+
 };
 
 var decreaseBar = function(percent) {
     if (barSize > 0) {
         barSize -= percent;
         checkBar(barSize);
-        innerBar.css('height', barSize + '%');
+        innerBar.css(barOrientation, barSize + '%');
     }
 };
 
@@ -241,19 +247,19 @@ var decreaseLeoBar = function(percent) {
     if (leoBarSize > 0) {
         leoBarSize -= percent;
         checkBar(leoBarSize);
-        innerLeoBar.css('height', leoBarSize + '%');
+        innerLeoBar.css(barOrientation, leoBarSize + '%');
     }
 };
 
 var clearBar = function() {
     barSize = 0;
-    innerBar.css('height', '0');
+    innerBar.css(barOrientation, '0');
     innerBar.css('background-color', '#0F0');
 };
 
 var clearLeoBar = function() {
     leoBarSize = 0;
-    innerLeoBar.css('height', '0');
+    innerLeoBar.css(barOrientation, '0');
     innerLeoBar.css('background-color', '#0F0');
 };
 
@@ -279,3 +285,19 @@ instructionButton.on('click', function() {
     closeInstructionModal();
 });
 
+// Vertical bar tests
+
+var showBoss = function() {
+    if (isResponsiveWidth) {
+        $('.player-bar-outer').fadeOut('3000');
+        $('.player-vertical-bar-outer').fadeIn('3000');
+        innerLeoBar = $('.player-vertical-bar-leo .player-vertical-bar-inner');
+        innerBar = $('.player-vertical-bar-bambam .player-vertical-bar-inner');
+        barOrientation = 'width';
+    }
+
+    setTimeout(function() {
+        audioMonstro.play();
+        $('#leo').fadeIn(1500).css('display', 'inline');
+    }, 3000);
+}
