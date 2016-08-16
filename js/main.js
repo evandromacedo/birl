@@ -1,5 +1,6 @@
 jQuery(document).ready(function($) {
 
+    // Birl's constants
     const birlLimit        = 100,
           birlPercentUp    = 2,
           birlMaxLevel     = 5,
@@ -10,7 +11,7 @@ jQuery(document).ready(function($) {
           birlDownFour     = 0.7,
           birlDownBoss     = 1;
 
-
+    // Audio and DOM references
     var   audioShow        = document.getElementById("show"),
           audioBirl        = document.getElementById("birl"),
           audioBodybuilder = document.getElementById("bodybuilder"),
@@ -20,21 +21,50 @@ jQuery(document).ready(function($) {
           birlButton       = $('#bambam > .player'),
           nextLevelButton  = $('#next-level-button');
 
-    // openInstructionModal('Instruções:', 'Clique o mais rápido que puder para buscar o 13 no trapézio descendente antes que o tempo acabe. A cada level a dificuldade aumenta.');
-    // openModal();
+    // Initial modal dialogs
+    openInstructionModal('Instruções:', 'Clique o mais rápido que puder para buscar o 13 no trapézio descendente antes que o tempo acabe. A cada level a dificuldade aumenta.');
+    openModal();
 
+    // Boss Object
     var Leo = function() {
         var self = this;
 
         self.monstroCounter = 0;
 
+        // Start the boss
         self.monstroStart = function() {
+            // Clear previous intervals
             clearInterval(self.frangoInterval);
             clearInterval(self.monstroInterval);
+
+            // Set new ones
             self.frangoInterval = setInterval(function() { self.decrementMonstro(birlDownBoss) }, 100);
             self.monstroInterval = setInterval(function() { self.incrementMonstro() }, 100);
         };
 
+        // Increment boss' bar
+        self.incrementMonstro = function() {
+            toggleLeoImage();
+            self.monstroCounter += birlPercentUp;
+
+            if (self.monstroCounter <= birlLimit) {
+                increaseLeoBar(birlPercentUp);
+            }
+
+            if (self.monstroCounter >= birlLimit) {
+                self.finish();
+            }
+        };
+
+        // Decrement boss' bar
+        self.decrementMonstro = function(percent) {
+            if (self.monstroCounter > 0) {
+                self.monstroCounter -= percent;
+                decreaseLeoBar(percent);
+            }
+        };
+
+        // Finish when the boss get 100%
         self.finish = function() {
             clearTimeout(toggleLeoImageTimeout);
             leoTimeIsOver = true;
@@ -51,27 +81,9 @@ jQuery(document).ready(function($) {
             }, 3000);
         };
 
-        self.incrementMonstro = function() {
-            toggleLeoImage();
-            self.monstroCounter += birlPercentUp;
-
-            if (self.monstroCounter <= birlLimit) {
-                increaseLeoBar(birlPercentUp);
-            }
-
-            if (self.monstroCounter >= birlLimit) {
-                self.finish();
-            }
-        };
-
-        self.decrementMonstro = function(percent) {
-            if (self.monstroCounter > 0) {
-                self.monstroCounter -= percent;
-                decreaseLeoBar(percent);
-            }
-        };
     };
 
+    // Bambam Object
     var HoraDoShow = function() {
         var self = this;
 
@@ -79,22 +91,7 @@ jQuery(document).ready(function($) {
         self.birlCounter = 0;
         self.birlTimer   = birlLevelTimer;
 
-        self.countdown = function() {
-            self.birlTimer--;
-            setTimerText(self.birlTimer);
-
-            if (self.birlTimer == 0) {
-                clearInterval(self.birlCountdown);
-                self.playAgain();
-                return;
-            }
-
-            if (self.birlTimer == 5) {
-                setTimerRed();
-                audioVaiDarNao.play();
-            }
-        }
-
+        // Start a new level
         self.startBirl = function (restartBirlLevel) {
             if (restartBirlLevel)
                 self.birlLevel = 1;
@@ -105,6 +102,7 @@ jQuery(document).ready(function($) {
             setCounterText(self.birlCounter);
             setLevelText(self.birlLevel);
 
+            // Verify current level
             switch (self.birlLevel) {
                 case 1:
                     clearInterval(self.birlInterval);
@@ -138,20 +136,64 @@ jQuery(document).ready(function($) {
             }
         };
 
-        self.theEnd = function() {
-            self.audioBoss.pause();
+        // Increment Birl's bar
+        self.incrementBirl = function () {
+            self.birlCounter += birlPercentUp;
+            setCounterText(self.birlCounter);
 
-            bgAudio = new Audio('audio/index.ogg');
-            bgAudio.addEventListener('ended', function() {
-                this.currentTime = 0;
-                this.play();
-            }, false);
-            bgAudio.play();
+            if (self.birlCounter <= birlLimit) {
+                increaseBar(birlPercentUp);
+            }
+        };
 
-            openModal('É 37 ANOS PORRA!', 'WHOOOOOOOOOO');
-        }
+        // Decrement Birl's bar
+        self.decrementBirl = function (percent) {
+            if (self.birlCounter > 0) {
+                self.birlCounter -= percent;
+                setCounterText(self.birlCounter);
+                decreaseBar(percent);
+            }
+        };
 
+        // Level countdown
+        self.countdown = function() {
+            self.birlTimer--;
+            setTimerText(self.birlTimer);
 
+            // When comes to 0, play again modal is shown
+            if (self.birlTimer == 0) {
+                clearInterval(self.birlCountdown);
+                self.playAgain();
+                return;
+            }
+
+            // Play audio on 5 seconds left
+            if (self.birlTimer == 5) {
+                setTimerRed();
+                audioVaiDarNao.play();
+            }
+        };
+
+        // Clear level and open modal to start again
+        self.playAgain = function() {
+            clearBar();
+            setTimerBlack();
+            openModal('Perdeu. Mas um monstro nunca desiste', self.birlLevel);
+            clearInterval(self.birlInterval);
+        };
+
+        // Restart level (not done in layout yet)
+        self.restartBirl = function () {
+            self.birlCounter = 0;
+            self.birlLevel   = 1;
+            setCounterText(self.birlCounter);
+            setLevelText(self.birlLevel);
+            clearInterval(self.birlInterval);
+            audioShow.play();
+            clearBar();
+        };
+
+        // Finish level, clear everything, and open modal to start next level
         self.finishLevel = function() {
             clearTimeout(toggleImageTimeout);
             disableBambam();
@@ -159,25 +201,33 @@ jQuery(document).ready(function($) {
             clearInterval(self.birlCountdown);
             clearInterval(self.birlInterval);
 
+            // If win boss' level, clear everything and return image
             if (self.birlLevel == 2) {
                 clearInterval(self.leo.frangoInterval);
                 clearInterval(self.leo.monstroInterval);
                 leoLose();
             }
 
+            // Increment Level
             self.birlLevel++;
 
             setTimeout(function() {
 
+                // Check the level and change scenario according
                 switch (self.birlLevel) {
                     case 2:
-                        changeScenario('palco');
-                        self.boss();
-                        // changeScenario('praia');
-                        // openModal('Ta saindo da jaula o monstro', 2);
+                        changeScenario('praia');
+                        openModal('Ta saindo da jaula o monstro', 2);
                         break;
 
+                    // Start Boss
                     case 3:
+                        changeScenario('palco');
+                        self.boss();
+                        break;
+
+                    // Finish the game
+                    case 4:
                         self.theEnd();
                         return;
                         break;
@@ -187,16 +237,15 @@ jQuery(document).ready(function($) {
                     //     openModal('Aqui faz verão o ano inteiro', 3);
                     //     break;
 
-                    case 4:
-                        changeScenario('praia');
-                        openModal('Ajuda o maluco que ta doente', 4);
-                        break;
+                    // case 4:
+                    //     changeScenario('praia');
+                    //     openModal('Ajuda o maluco que ta doente', 4);
+                    //     break;
 
-                    case 5:
-                        changeScenario('palco');
-                        self.boss();
-                        // openModal('Ta saindo da jaula o monstro!', 5);
-                        break;
+                    // case 5:
+                    //     changeScenario('palco');
+                    //     self.boss();
+                    //     break;
                 }
 
                 clearBar();
@@ -206,6 +255,13 @@ jQuery(document).ready(function($) {
             }, 3000);
         };
 
+        // Play next level if exist
+        self.playNextLevel = function () {
+            if (self.birlLevel <= birlMaxLevel)
+                self.startBirl();
+        };
+
+        // Play the whole boss' audio and animation
         self.boss = function() {
             self.audioBoss = new Audio('audio/bondedamaromba.mp3');
             self.audioBoss.addEventListener('ended', function() {
@@ -222,50 +278,21 @@ jQuery(document).ready(function($) {
             }, 6500);
         };
 
-        self.incrementBirl = function () {
-            self.birlCounter += birlPercentUp;
-            setCounterText(self.birlCounter);
+        // Animations when the game is over
+        self.theEnd = function() {
+            self.audioBoss.pause();
 
-            if (self.birlCounter <= birlLimit) {
-                increaseBar(birlPercentUp);
-            }
+            bgAudio = new Audio('audio/index.ogg');
+            bgAudio.addEventListener('ended', function() {
+                this.currentTime = 0;
+                this.play();
+            }, false);
+            bgAudio.play();
+
+            openModal('É 37 ANOS PORRA!', 'WHOOOOOOOOOO');
         };
 
-        self.decrementBirl = function (percent) {
-            if (self.birlCounter > 0) {
-                self.birlCounter -= percent;
-                setCounterText(self.birlCounter);
-                decreaseBar(percent);
-            }
-        };
-
-        self.playNextLevel = function () {
-            if (self.birlLevel <= birlMaxLevel)
-                self.startBirl();
-        };
-
-        self.playAgain = function() {
-            clearBar();
-            setTimerBlack();
-            openModal('Perdeu. Mas um monstro nunca desiste', self.birlLevel);
-            clearInterval(self.birlInterval);
-        };
-
-        self.restartBirl = function () {
-            self.birlCounter = 0;
-            self.birlLevel   = 1;
-            setCounterText(self.birlCounter);
-            setLevelText(self.birlLevel);
-            clearInterval(self.birlInterval);
-            audioShow.play();
-            clearBar();
-        };
-    }, bambam = new HoraDoShow();
-
-    $('#birlInit').on('click', function() {
-        // console.log('asd');
-        // bambam.restartBirl();
-    });
+    }, bambam = new HoraDoShow(); // Create a new player
 
     nextLevelButton.on('click', function() {
         if (bambam.birlLevel == 1)
