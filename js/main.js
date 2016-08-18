@@ -112,16 +112,16 @@ jQuery(document).ready(function($) {
                     break;
 
                 case 2:
+                    self.birlInterval = setInterval(function() { self.decrementBirl(birlDownThree) }, 100);
+                    self.birlCountdown = setInterval(self.countdown, 1000);
+                    break;
+
+                case 3:
                     self.leo = new Leo();
                     self.leo.monstroStart();
                     self.birlInterval ? clearInterval(self.birlInterval) : null;
                     self.birlInterval = setInterval(function() { self.decrementBirl(birlDownBoss) }, 100);
                     // self.birlCountdown = setInterval(self.countdown, 1000);
-                    break;
-
-                case 3:
-                    self.birlInterval = setInterval(function() { self.decrementBirl(birlDownThree) }, 100);
-                    self.birlCountdown = setInterval(self.countdown, 1000);
                     break;
 
                 case 4:
@@ -202,7 +202,7 @@ jQuery(document).ready(function($) {
             clearInterval(self.birlInterval);
 
             // If win boss' level, clear everything and return image
-            if (self.birlLevel == 2) {
+            if (self.birlLevel == 3) {
                 clearInterval(self.leo.frangoInterval);
                 clearInterval(self.leo.monstroInterval);
                 leoLose();
